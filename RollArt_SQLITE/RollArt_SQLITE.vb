@@ -12,7 +12,8 @@ Structure Registro_formato
 End Structure
 Public Class RollArt_SQLITE
     Dim DB_Path As String
-
+    Dim textBox(,) As Label
+    Dim checBox() As CheckBox
     '************aSIGNAMOS EL NOMBRE DE LA TABLA A LA QUE APUNTAR*************
     'Dim TableName As String = "tabledb"
     Dim TableName As String = "Athletes"
@@ -105,58 +106,69 @@ Public Class RollArt_SQLITE
         Dim tabla_atleta(TableDB.Rows.Count - 1, 7) As String
         Dim index_Cell As Integer
         Dim Index_row As Integer
-        Dim textBox(TableDB.Rows.Count - 1, 7) As Label
+        ReDim textBox(TableDB.Rows.Count - 1, 7)
+
+        ReDim checBox(TableDB.Rows.Count - 1)
         Dim loc_x As Integer
         Dim loc_y As Integer
         Dim ancho As Integer
         Dim alto As Integer
-
+        Panel_Tabla.BackColor = Color.WhiteSmoke
         Index_row = 0
         For Each row As DataRow In TableDB.Rows
             index_Cell = 0
+            checBox(Index_row) = New CheckBox
+            checBox(Index_row).Size = New Size(20, 20)
+            checBox(Index_row).Left = 0
+            checBox(Index_row).Top = 20 * Index_row
+            Panel_Tabla.Controls.Add(checBox(Index_row))
             For Each cell As String In row.ItemArray
                 'do what you want!
                 tabla_atleta(Index_row, index_Cell) = cell
 
                 textBox(Index_row, index_Cell) = New Label
+
                 textBox(Index_row, index_Cell).Text = cell
                 'textBox(Index_row, index_Cell).Size = New Size(50, 20)
 
                 textBox(Index_row, index_Cell).Top = 20 * Index_row
+                textBox(Index_row, index_Cell).BackColor = Color.LightGray
+                alto = 17
                 Select Case index_Cell
                     Case 0
                         ancho = 60
-                        alto = 20
-                        loc_x = 0
-                        textBox(Index_row, index_Cell).BackColor = Color.Blue
+
+                        loc_x = 20
+                        'textBox(Index_row, index_Cell).BackColor = Color.LightGray
                     Case 1
                         ancho = 300
-                        alto = 20
-                        loc_x = 60
-                        textBox(Index_row, index_Cell).BackColor = Color.Red
+                        'alto = 20
+                        loc_x = 80
+                        'textBox(Index_row, index_Cell).BackColor = Color.LightGray
                     Case 2
                         ancho = 60
-                        alto = 20
-                        loc_x = 360
+                        'alto = 20
+                        loc_x = 380
                     Case 3
                         ancho = 90
-                        alto = 20
-                        loc_x = 420
+                        'alto = 20
+                        loc_x = 440
                     Case 4
                         ancho = 60
-                        alto = 20
-                        loc_x = 510
+                        'alto = 20
+                        loc_x = 530
                     Case 5
                         ancho = 60
-                        alto = 20
-                        loc_x = 570
+                        'alto = 20
+                        loc_x = 590
                     Case 6
                         ancho = 60
-                        alto = 20
-                        loc_x = 630
+                        'alto = 20
+                        loc_x = 650
                 End Select
 
                 textBox(Index_row, index_Cell).Left = loc_x
+                textBox(Index_row, index_Cell).BorderStyle = New BorderStyle()
                 textBox(Index_row, index_Cell).Size = New Size(ancho, alto)
 
                 Panel_Tabla.Controls.Add(textBox(Index_row, index_Cell))
@@ -165,6 +177,7 @@ Public Class RollArt_SQLITE
             Next
 
             Index_row += 1
+            Panel_Tabla.Size = New Size(710, (20 * Index_row) + 2)
         Next row
 
 
