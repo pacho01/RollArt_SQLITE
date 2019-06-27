@@ -28,10 +28,16 @@ Public Class RollArt_SQLITE
 
     Private Sub VBNetSQlite_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'CenterToScreen()
-        'TextBoxSearch.CharacterCasing = CharacterCasing.Normal
-        'SendMessage(TextBoxSearch.Handle, &H1501, 0, "Search...")
+        TextBoxSearch.CharacterCasing = CharacterCasing.Normal
+        SendMessage(TextBoxSearch.Handle, &H1501, 0, "Search...")
 
+
+
+        leer_Eventos()
         Exit Sub
+
+        'SELECT DISTINCT G.Name, G.Place, G.Date, G.ID_GaraParams, S.Name, C.Name  FROM GaraParams G, Specialita S, Category C WHERE G.ID_Specialita = S.ID_Specialita AND G.ID_Category = C.ID_Category
+
 
         file_dialog.Filter = "DB|*.s3db"
         'Dim camino As String
@@ -101,6 +107,68 @@ Public Class RollArt_SQLITE
         'treeEvents.Nodes(0).Nodes(1).Nodes(0).Nodes.Add("Great Grandchild")
         'treeEvents.EndUpdate()
     End Sub
+
+    Sub leer_Eventos()
+
+        file_dialog.Filter = "DB|*.s3db"
+        'Dim camino As String
+        Dim archivo As String
+        'Dim lenstring As Integer
+
+        If file_dialog.ShowDialog() = DialogResult.OK Then
+            archivo = file_dialog.FileName
+            DB_Path = "Data Source=" & archivo
+        Else
+            MsgBox("No se cargo ningun Archivo", vbOKOnly)
+            Exit Sub
+        End If
+
+
+        Dim SQLiteCon As New SQLiteConnection(DB_Path)
+        Try
+            SQLiteCon.Open()
+        Catch ex As Exception
+            SQLiteCon.Dispose()
+            SQLiteCon = Nothing
+            MsgBox(ex.Message)
+            Exit Sub
+        End Try
+
+        Dim TableDB As New DataTable
+
+        Try
+            LoadDB("SELECT DISTINCT G.Name as nombre, G.Place, G.Date, G.ID_GaraParams, S.Name, C.Name  FROM GaraParams G, Specialita S, Category C WHERE G.ID_Specialita = S.ID_Specialita AND G.ID_Category = C.ID_Category", TableDB, SQLiteCon)
+            'DataGridViewTable.DataSource = Nothing
+            'DataGridViewTable.DataSource = TableDB
+            'DataGridViewTable.ClearSelection()
+            treeEvents.Nodes.Clear()
+            treeEvents.BeginUpdate()
+            treeEvents.Nodes.Add("Eventos")
+            Dim i As Integer = 0
+            For Each row As DataRow In TableDB.Rows
+
+                Dim nombre As String = CStr(row("nombre"))
+                Dim nombre2 As String = CStr(row("name"))
+                Dim fecha As String = CStr(row("Date"))
+                treeEvents.Nodes(0).Nodes.Add(nombre)
+                treeEvents.Nodes(0).Nodes(i).Nodes.Add(nombre2 & " - " & fecha)
+                i += 1
+            Next
+            treeEvents.EndUpdate()
+            treeEvents.ExpandAll()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+        TableDB.Dispose()
+        TableDB = Nothing
+        SQLiteCon.Close()
+        SQLiteCon.Dispose()
+        SQLiteCon = Nothing
+    End Sub
+
+
+
 
     Sub leer_posiciones_participantes()
 
@@ -231,8 +299,8 @@ Public Class RollArt_SQLITE
     End Sub
 
     Private Sub btn_OpenDB_Click(sender As Object, e As EventArgs) Handles btn_OpenDB.Click
-        leer_posiciones_participantes()
-
+        'leer_posiciones_participantes()
+        leer_Eventos()
 
     End Sub
 
