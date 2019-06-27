@@ -51,14 +51,20 @@ Partial Class RollArt_SQLITE
         Me.CheckBoxSearchbyName = New System.Windows.Forms.CheckBox()
         Me.CheckBoxSearchbyID = New System.Windows.Forms.CheckBox()
         Me.Panel_Tabla = New System.Windows.Forms.Panel()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.treeEvents = New System.Windows.Forms.TreeView()
+        Me.btn_OpenDB = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         CType(Me.DataGridViewTable, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStripEditor.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'TextBoxSearch
         '
-        Me.TextBoxSearch.Location = New System.Drawing.Point(215, 211)
+        Me.TextBoxSearch.Location = New System.Drawing.Point(215, 576)
         Me.TextBoxSearch.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.TextBoxSearch.Name = "TextBoxSearch"
         Me.TextBoxSearch.Size = New System.Drawing.Size(347, 20)
@@ -82,7 +88,7 @@ Partial Class RollArt_SQLITE
         Me.ButtonDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.ButtonDelete.Image = Global.RollArt_SQLITE.My.Resources.Resources.papelera_32
         Me.ButtonDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.ButtonDelete.Location = New System.Drawing.Point(12, 188)
+        Me.ButtonDelete.Location = New System.Drawing.Point(12, 553)
         Me.ButtonDelete.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.ButtonDelete.Name = "ButtonDelete"
         Me.ButtonDelete.Size = New System.Drawing.Size(94, 43)
@@ -95,7 +101,7 @@ Partial Class RollArt_SQLITE
         '
         Me.ButtonRefresh.Image = Global.RollArt_SQLITE.My.Resources.Resources.refresh_32
         Me.ButtonRefresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.ButtonRefresh.Location = New System.Drawing.Point(110, 188)
+        Me.ButtonRefresh.Location = New System.Drawing.Point(110, 553)
         Me.ButtonRefresh.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.ButtonRefresh.Name = "ButtonRefresh"
         Me.ButtonRefresh.Size = New System.Drawing.Size(94, 43)
@@ -108,7 +114,7 @@ Partial Class RollArt_SQLITE
         '
         Me.ButtonUpdate.Image = Global.RollArt_SQLITE.My.Resources.Resources.editar_32
         Me.ButtonUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.ButtonUpdate.Location = New System.Drawing.Point(566, 199)
+        Me.ButtonUpdate.Location = New System.Drawing.Point(566, 555)
         Me.ButtonUpdate.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.ButtonUpdate.Name = "ButtonUpdate"
         Me.ButtonUpdate.Size = New System.Drawing.Size(94, 43)
@@ -122,7 +128,7 @@ Partial Class RollArt_SQLITE
         Me.ButtonSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.ButtonSave.Image = Global.RollArt_SQLITE.My.Resources.Resources.guardar_32
         Me.ButtonSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.ButtonSave.Location = New System.Drawing.Point(664, 188)
+        Me.ButtonSave.Location = New System.Drawing.Point(664, 553)
         Me.ButtonSave.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.ButtonSave.Name = "ButtonSave"
         Me.ButtonSave.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -136,11 +142,11 @@ Partial Class RollArt_SQLITE
         '
         Me.DataGridViewTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewTable.ContextMenuStrip = Me.ContextMenuStripEditor
-        Me.DataGridViewTable.Location = New System.Drawing.Point(794, 32)
+        Me.DataGridViewTable.Location = New System.Drawing.Point(762, 12)
         Me.DataGridViewTable.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.DataGridViewTable.Name = "DataGridViewTable"
         Me.DataGridViewTable.RowTemplate.Height = 31
-        Me.DataGridViewTable.Size = New System.Drawing.Size(208, 118)
+        Me.DataGridViewTable.Size = New System.Drawing.Size(107, 118)
         Me.DataGridViewTable.TabIndex = 20
         '
         'ContextMenuStripEditor
@@ -187,7 +193,7 @@ Partial Class RollArt_SQLITE
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 27)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 392)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(746, 152)
         Me.GroupBox1.TabIndex = 22
@@ -323,7 +329,7 @@ Partial Class RollArt_SQLITE
         Me.CheckBoxSearchbyName.AutoSize = True
         Me.CheckBoxSearchbyName.Checked = True
         Me.CheckBoxSearchbyName.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBoxSearchbyName.Location = New System.Drawing.Point(217, 188)
+        Me.CheckBoxSearchbyName.Location = New System.Drawing.Point(217, 553)
         Me.CheckBoxSearchbyName.Name = "CheckBoxSearchbyName"
         Me.CheckBoxSearchbyName.Size = New System.Drawing.Size(127, 17)
         Me.CheckBoxSearchbyName.TabIndex = 23
@@ -333,7 +339,7 @@ Partial Class RollArt_SQLITE
         'CheckBoxSearchbyID
         '
         Me.CheckBoxSearchbyID.AutoSize = True
-        Me.CheckBoxSearchbyID.Location = New System.Drawing.Point(470, 188)
+        Me.CheckBoxSearchbyID.Location = New System.Drawing.Point(470, 553)
         Me.CheckBoxSearchbyID.Name = "CheckBoxSearchbyID"
         Me.CheckBoxSearchbyID.Size = New System.Drawing.Size(91, 17)
         Me.CheckBoxSearchbyID.TabIndex = 24
@@ -343,16 +349,58 @@ Partial Class RollArt_SQLITE
         'Panel_Tabla
         '
         Me.Panel_Tabla.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel_Tabla.Location = New System.Drawing.Point(13, 254)
+        Me.Panel_Tabla.Location = New System.Drawing.Point(12, 171)
         Me.Panel_Tabla.Name = "Panel_Tabla"
-        Me.Panel_Tabla.Size = New System.Drawing.Size(835, 215)
+        Me.Panel_Tabla.Size = New System.Drawing.Size(745, 215)
         Me.Panel_Tabla.TabIndex = 25
+        '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.Button1)
+        Me.Panel1.Controls.Add(Me.btn_OpenDB)
+        Me.Panel1.Controls.Add(Me.treeEvents)
+        Me.Panel1.Location = New System.Drawing.Point(12, 12)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(745, 153)
+        Me.Panel1.TabIndex = 26
+        '
+        'treeEvents
+        '
+        Me.treeEvents.Location = New System.Drawing.Point(4, 4)
+        Me.treeEvents.Name = "treeEvents"
+        Me.treeEvents.Size = New System.Drawing.Size(555, 146)
+        Me.treeEvents.TabIndex = 0
+        '
+        'btn_OpenDB
+        '
+        Me.btn_OpenDB.Location = New System.Drawing.Point(604, 14)
+        Me.btn_OpenDB.Name = "btn_OpenDB"
+        Me.btn_OpenDB.Size = New System.Drawing.Size(109, 26)
+        Me.btn_OpenDB.TabIndex = 1
+        Me.btn_OpenDB.Text = "Open DB"
+        Me.btn_OpenDB.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(604, 46)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(107, 26)
+        Me.Button1.TabIndex = 2
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'ImageList1
+        '
+        Me.ImageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit
+        Me.ImageList1.ImageSize = New System.Drawing.Size(16, 16)
+        Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
         '
         'RollArt_SQLITE
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1070, 479)
+        Me.ClientSize = New System.Drawing.Size(918, 401)
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel_Tabla)
         Me.Controls.Add(Me.CheckBoxSearchbyID)
         Me.Controls.Add(Me.CheckBoxSearchbyName)
@@ -370,6 +418,7 @@ Partial Class RollArt_SQLITE
         Me.ContextMenuStripEditor.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        Me.Panel1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -402,4 +451,9 @@ Partial Class RollArt_SQLITE
     Friend WithEvents DeleteToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SelectAllToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Panel_Tabla As Panel
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents Button1 As Button
+    Friend WithEvents btn_OpenDB As Button
+    Friend WithEvents treeEvents As TreeView
+    Friend WithEvents ImageList1 As ImageList
 End Class
