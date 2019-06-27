@@ -1,15 +1,15 @@
 ﻿Imports System.Data.SQLite
 Imports System.Runtime.InteropServices
 
-Structure Registro_formato
-    Public cam1 As String
-    Public cam2 As String
-    Public cam3 As String
-    Public cam4 As String
-    Public cam5 As String
-    Public cam6 As String
-    Public cam7 As String
-End Structure
+'Structure Registro_formato
+'    Public cam1 As String
+'    Public cam2 As String
+'    Public cam3 As String
+'    Public cam4 As String
+'    Public cam5 As String
+'    Public cam6 As String
+'    Public cam7 As String
+'End Structure
 Public Class RollArt_SQLITE
     Dim DB_Path As String
     Dim textBox(,) As Label
@@ -27,14 +27,30 @@ Public Class RollArt_SQLITE
     End Function
 
     Private Sub VBNetSQlite_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.CenterToScreen()
-        TextBoxSearch.CharacterCasing = CharacterCasing.Normal
-        SendMessage(Me.TextBoxSearch.Handle, &H1501, 0, "Search...")
+        'CenterToScreen()
+        'TextBoxSearch.CharacterCasing = CharacterCasing.Normal
+        'SendMessage(TextBoxSearch.Handle, &H1501, 0, "Search...")
+
+        Exit Sub
+
+        file_dialog.Filter = "DB|*.s3db"
+        'Dim camino As String
+        Dim archivo As String
+        'Dim lenstring As Integer
+
+        If file_dialog.ShowDialog() = DialogResult.OK Then
+            archivo = file_dialog.FileName
+            DB_Path = "Data Source=" & archivo
+        Else
+            MsgBox("No se cargo ningun Archivo", vbOKOnly)
+            Exit Sub
+        End If
 
 
         '****CAMBIAMOS EL NOMBRE DE LA BASE DE DATOS***************************************************
         'DB_Path = "Data Source=" & Application.StartupPath & "\databasesqlite.db;" '"\rolljudge2.s3db;"
-        DB_Path = "Data Source=" & Application.StartupPath & "\rolljudge2.s3db;"
+        'DB_Path = "Data Source=" & Application.StartupPath & "\rolljudge2.s3db;"
+
         '**********************************************************************************************
 
 
@@ -71,14 +87,37 @@ Public Class RollArt_SQLITE
         SQLiteCon.Dispose()
         SQLiteCon = Nothing
 
-        leer_posiciones_participantes()
+        'leer_posiciones_participantes()
+
+        'treeEvents.BeginUpdate()
+        'treeEvents.Nodes.Add("Eventos")
+        'treeEvents.Nodes.Add("Otro Event")
+        'treeEvents.Nodes(0).Nodes.Add("Valencia")
+        'treeEvents.Nodes(1).Nodes.Add("Madrid")
+        'treeEvents.Nodes.Add("Parent")
+        'treeEvents.Nodes(0).Nodes.Add("Child 1")
+        'treeEvents.Nodes(0).Nodes.Add("Child 2")
+        'treeEvents.Nodes(0).Nodes(1).Nodes.Add("Grandchild")
+        'treeEvents.Nodes(0).Nodes(1).Nodes(0).Nodes.Add("Great Grandchild")
+        'treeEvents.EndUpdate()
     End Sub
 
     Sub leer_posiciones_participantes()
 
-        DB_Path = "Data Source=" & Application.StartupPath & "\rolljudge2.s3db;"
+        'DB_Path = "Data Source=" & Application.StartupPath & "\rolljudge2.s3db;"
 
+        file_dialog.Filter = "DB|*.s3db"
+        'Dim camino As String
+        Dim archivo As String
+        'Dim lenstring As Integer
 
+        If file_dialog.ShowDialog() = DialogResult.OK Then
+            archivo = file_dialog.FileName
+            DB_Path = "Data Source=" & archivo
+        Else
+            MsgBox("No se cargo ningun Archivo", vbOKOnly)
+            Exit Sub
+        End If
 
 
         Dim SQLiteCon As New SQLiteConnection(DB_Path)
@@ -95,7 +134,7 @@ Public Class RollArt_SQLITE
 
         Try
 
-            LoadDB("select NumStartingList, B.Name, A.ID_Atleta, Societa, Country, B.ID_Specialita, Position from Participants as A, Athletes as B, GaraFinal as G where A.ID_GaraParams = 5 AND A.ID_SEGMENT = G.ID_SEGMENT AND A.ID_GaraParams = G.ID_GaraParams AND A.ID_SEGMENT = 1 AND B.ID_Atleta = G.ID_Atleta AND A.ID_Atleta = B.ID_Atleta ORDER BY Position", TableDB, SQLiteCon)
+            LoadDB("select NumStartingList, B.Name, A.ID_Atleta, Societa, Country, B.ID_Specialita, Position from Participants as A, Athletes as B, GaraFinal as G where A.ID_GaraParams = 1 AND A.ID_SEGMENT = G.ID_SEGMENT AND A.ID_GaraParams = G.ID_GaraParams AND A.ID_SEGMENT = 1 AND B.ID_Atleta = G.ID_Atleta AND A.ID_Atleta = B.ID_Atleta ORDER BY Position", TableDB, SQLiteCon)
 
 
         Catch ex As Exception
@@ -191,14 +230,18 @@ Public Class RollArt_SQLITE
 
     End Sub
 
+    Private Sub btn_OpenDB_Click(sender As Object, e As EventArgs) Handles btn_OpenDB.Click
+        leer_posiciones_participantes()
 
+
+    End Sub
 
 
 
     Private Sub VBNetSQlite_MouseClick(sender As Object, e As MouseEventArgs) Handles Me.MouseClick
         DataGridViewTable.ClearSelection()
         ButtonMakeId.Focus()
-        SendMessage(Me.TextBoxSearch.Handle, &H1501, 0, "Search...")
+        SendMessage(TextBoxSearch.Handle, &H1501, 0, "Search...")
     End Sub
 
     Private Sub TextBoxMobilePhone_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxMobilePhone.KeyPress
@@ -468,7 +511,7 @@ Public Class RollArt_SQLITE
     Private Sub GroupBox1_MouseClick(sender As Object, e As MouseEventArgs) Handles GroupBox1.MouseClick
         DataGridViewTable.ClearSelection()
         ButtonMakeId.Focus()
-        SendMessage(Me.TextBoxSearch.Handle, &H1501, 0, "Search...")
+        SendMessage(TextBoxSearch.Handle, &H1501, 0, "Search...")
     End Sub
 
     Private Sub DataGridViewTable_CellMouseDown(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridViewTable.CellMouseDown
@@ -548,7 +591,7 @@ Public Class RollArt_SQLITE
         SearchCMD = ""
         If TextBoxSearch.Text = Nothing Then
             TextBoxSearch.CharacterCasing = CharacterCasing.Normal
-            SendMessage(Me.TextBoxSearch.Handle, &H1501, 0, "Search...")
+            SendMessage(TextBoxSearch.Handle, &H1501, 0, "Search...")
         Else
             TextBoxSearch.CharacterCasing = CharacterCasing.Upper
         End If

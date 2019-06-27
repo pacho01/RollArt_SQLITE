@@ -56,6 +56,8 @@ Partial Class RollArt_SQLITE
         Me.btn_OpenDB = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.file_dialog = New System.Windows.Forms.OpenFileDialog()
         CType(Me.DataGridViewTable, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStripEditor.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -351,29 +353,30 @@ Partial Class RollArt_SQLITE
         Me.Panel_Tabla.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel_Tabla.Location = New System.Drawing.Point(12, 171)
         Me.Panel_Tabla.Name = "Panel_Tabla"
-        Me.Panel_Tabla.Size = New System.Drawing.Size(745, 215)
+        Me.Panel_Tabla.Size = New System.Drawing.Size(746, 187)
         Me.Panel_Tabla.TabIndex = 25
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.Label7)
         Me.Panel1.Controls.Add(Me.Button1)
         Me.Panel1.Controls.Add(Me.btn_OpenDB)
         Me.Panel1.Controls.Add(Me.treeEvents)
         Me.Panel1.Location = New System.Drawing.Point(12, 12)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(745, 153)
+        Me.Panel1.Size = New System.Drawing.Size(746, 153)
         Me.Panel1.TabIndex = 26
         '
         'treeEvents
         '
-        Me.treeEvents.Location = New System.Drawing.Point(4, 4)
+        Me.treeEvents.Location = New System.Drawing.Point(65, 4)
         Me.treeEvents.Name = "treeEvents"
-        Me.treeEvents.Size = New System.Drawing.Size(555, 146)
+        Me.treeEvents.Size = New System.Drawing.Size(472, 146)
         Me.treeEvents.TabIndex = 0
         '
         'btn_OpenDB
         '
-        Me.btn_OpenDB.Location = New System.Drawing.Point(604, 14)
+        Me.btn_OpenDB.Location = New System.Drawing.Point(601, 6)
         Me.btn_OpenDB.Name = "btn_OpenDB"
         Me.btn_OpenDB.Size = New System.Drawing.Size(109, 26)
         Me.btn_OpenDB.TabIndex = 1
@@ -382,7 +385,7 @@ Partial Class RollArt_SQLITE
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(604, 46)
+        Me.Button1.Location = New System.Drawing.Point(601, 38)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(107, 26)
         Me.Button1.TabIndex = 2
@@ -395,11 +398,24 @@ Partial Class RollArt_SQLITE
         Me.ImageList1.ImageSize = New System.Drawing.Size(16, 16)
         Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
         '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(13, 13)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(46, 13)
+        Me.Label7.TabIndex = 3
+        Me.Label7.Text = "Eventos"
+        '
+        'file_dialog
+        '
+        Me.file_dialog.FileName = "OpenFileDialog1"
+        '
         'RollArt_SQLITE
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(918, 401)
+        Me.ClientSize = New System.Drawing.Size(762, 376)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel_Tabla)
         Me.Controls.Add(Me.CheckBoxSearchbyID)
@@ -419,6 +435,7 @@ Partial Class RollArt_SQLITE
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -456,4 +473,6 @@ Partial Class RollArt_SQLITE
     Friend WithEvents btn_OpenDB As Button
     Friend WithEvents treeEvents As TreeView
     Friend WithEvents ImageList1 As ImageList
+    Friend WithEvents Label7 As Label
+    Friend WithEvents file_dialog As OpenFileDialog
 End Class

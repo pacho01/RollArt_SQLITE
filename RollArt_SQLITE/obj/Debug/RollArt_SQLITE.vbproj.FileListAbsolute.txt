@@ -76,3 +76,12 @@ C:\Users\jlloris\Documents\Visual Studio 2015\Projects\RollArt_SQLite\RollArt_SQ
 C:\Users\jlloris\Documents\Visual Studio 2015\Projects\RollArt_SQLite\RollArt_SQLITE\RollArt_SQLITE\obj\Debug\RollArt_SQLITE.exe
 C:\Users\jlloris\Documents\Visual Studio 2015\Projects\RollArt_SQLite\RollArt_SQLITE\RollArt_SQLITE\obj\Debug\RollArt_SQLITE.xml
 C:\Users\jlloris\Documents\Visual Studio 2015\Projects\RollArt_SQLite\RollArt_SQLITE\RollArt_SQLITE\obj\Debug\RollArt_SQLITE.pdb
+C:\Users\jlloris\Documents\Visual Studio 2015\Projects\RollArt_SQLite\RollArt_SQLITE\RollArt_SQLITE\bin\Debug\RollArt_SQLITE.exe
+C:\Users\jlloris\Documents\Visual Studio 2015\Projects\RollArt_SQLite\RollArt_SQLITE\RollArt_SQLITE\bin\Debug\RollArt_SQLITE.pdb
+C:\Users\jlloris\Documents\Visual Studio 2015\Projects\RollArt_SQLite\RollArt_SQLITE\RollArt_SQLITE\bin\Debug\RollArt_SQLITE.xml
+C:\Users\jlloris\Documents\Visual Studio 2015\Projects\RollArt_SQLite\RollArt_SQLITE\RollArt_SQLITE\bin\Debug\System.Data.SQLite.dll
+C:\Users\jlloris\Documents\Visual Studio 2015\Projects\RollArt_SQLite\RollArt_SQLITE\RollArt_SQLITE\bin\Debug\System.Data.SQLite.xml
+C:\Users\jlloris\Documents\Visual Studio 2015\Projects\RollArt_SQLite\RollArt_SQLITE\RollArt_SQLITE\obj\Debug\RollArt_SQLITE.vbprojResolveAssemblyReference.cache
+C:\Users\jlloris\Documents\Visual Studio 2015\Projects\RollArt_SQLite\RollArt_SQLITE\RollArt_SQLITE\obj\Debug\RollArt_SQLITE.RollArt_SQLITE.resources
+C:\Users\jlloris\Documents\Visual Studio 2015\Projects\RollArt_SQLite\RollArt_SQLITE\RollArt_SQLITE\obj\Debug\RollArt_SQLITE.Resources.resources
+C:\Users\jlloris\Documents\Visual Studio 2015\Projects\RollArt_SQLite\RollArt_SQLITE\RollArt_SQLITE\obj\Debug\RollArt_SQLITE.vbproj.GenerateResource.Cache
