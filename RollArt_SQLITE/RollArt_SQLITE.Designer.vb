@@ -23,6 +23,7 @@ Partial Class RollArt_SQLITE
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(RollArt_SQLITE))
         Me.TextBoxSearch = New System.Windows.Forms.TextBox()
         Me.ButtonClear = New System.Windows.Forms.Button()
         Me.ButtonDelete = New System.Windows.Forms.Button()
@@ -363,6 +364,7 @@ Partial Class RollArt_SQLITE
         '
         'Panel1
         '
+        Me.Panel1.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.Panel1.Controls.Add(Me.Label7)
         Me.Panel1.Controls.Add(Me.Button1)
         Me.Panel1.Controls.Add(Me.btn_OpenDB)
@@ -405,17 +407,26 @@ Partial Class RollArt_SQLITE
         '
         'treeEvents
         '
+        Me.treeEvents.Font = New System.Drawing.Font("Calibri", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.treeEvents.ForeColor = System.Drawing.SystemColors.HotTrack
+        Me.treeEvents.ImageIndex = 3
+        Me.treeEvents.ImageList = Me.ImageList1
         Me.treeEvents.Location = New System.Drawing.Point(119, 7)
         Me.treeEvents.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.treeEvents.Name = "treeEvents"
+        Me.treeEvents.SelectedImageIndex = 1
+        Me.treeEvents.ShowPlusMinus = False
         Me.treeEvents.Size = New System.Drawing.Size(862, 266)
         Me.treeEvents.TabIndex = 0
         '
         'ImageList1
         '
-        Me.ImageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit
-        Me.ImageList1.ImageSize = New System.Drawing.Size(16, 16)
+        Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
         Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
+        Me.ImageList1.Images.SetKeyName(0, "evento1.png")
+        Me.ImageList1.Images.SetKeyName(1, "blue-search-icon.png")
+        Me.ImageList1.Images.SetKeyName(2, "LogoRFEP.png")
+        Me.ImageList1.Images.SetKeyName(3, "punto.png")
         '
         'file_dialog
         '
@@ -425,7 +436,7 @@ Partial Class RollArt_SQLITE
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1397, 694)
+        Me.ClientSize = New System.Drawing.Size(1354, 694)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel_Tabla)
         Me.Controls.Add(Me.CheckBoxSearchbyID)
