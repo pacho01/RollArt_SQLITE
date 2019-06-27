@@ -298,7 +298,7 @@ Public Class RollArt_SQLITE
 
     End Sub
 
-    Private Sub btn_OpenDB_Click(sender As Object, e As EventArgs) Handles btn_OpenDB.Click
+    Private Sub btn_OpenDB_Click(sender As Object, e As EventArgs)
         'leer_posiciones_participantes()
         leer_Eventos()
 

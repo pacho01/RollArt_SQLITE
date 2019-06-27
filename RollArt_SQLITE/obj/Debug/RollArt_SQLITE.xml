@@ -82,6 +82,11 @@ RollArt_SQLITE
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="P:RollArt_SQLITE.My.Resources.Resources.LogoRFEP">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:RollArt_SQLITE.My.Resources.Resources.papelera">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
