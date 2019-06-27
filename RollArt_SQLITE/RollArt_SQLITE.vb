@@ -108,6 +108,14 @@ Public Class RollArt_SQLITE
         'treeEvents.EndUpdate()
     End Sub
 
+    Private Sub btn_OpenDB_Click_1(sender As Object, e As EventArgs) Handles btn_OpenDB.Click
+        leer_Eventos()
+    End Sub
+
+    Private Sub btn_ver_participantes_Click(sender As Object, e As EventArgs) Handles btn_ver_participantes.Click
+        leer_posiciones_participantes()
+    End Sub
+
     Sub leer_Eventos()
 
         file_dialog.Filter = "DB|*.s3db"
@@ -141,6 +149,7 @@ Public Class RollArt_SQLITE
             'DataGridViewTable.DataSource = Nothing
             'DataGridViewTable.DataSource = TableDB
             'DataGridViewTable.ClearSelection()
+
             treeEvents.Nodes.Clear()
             treeEvents.BeginUpdate()
             treeEvents.Nodes.Add("Eventos")
@@ -150,7 +159,9 @@ Public Class RollArt_SQLITE
                 Dim nombre As String = CStr(row("nombre"))
                 Dim nombre2 As String = CStr(row("name"))
                 Dim fecha As String = CStr(row("Date"))
+
                 treeEvents.Nodes(0).Nodes.Add(nombre)
+                treeEvents.Nodes(0).Nodes(i).Tag = row("ID_GaraParams")
                 treeEvents.Nodes(0).Nodes(i).Nodes.Add(nombre2 & " - " & fecha)
                 i += 1
             Next
@@ -168,24 +179,22 @@ Public Class RollArt_SQLITE
     End Sub
 
 
-
-
     Sub leer_posiciones_participantes()
 
-        'DB_Path = "Data Source=" & Application.StartupPath & "\rolljudge2.s3db;"
+        ''DB_Path = "Data Source=" & Application.StartupPath & "\rolljudge2.s3db;"
 
-        file_dialog.Filter = "DB|*.s3db"
-        'Dim camino As String
-        Dim archivo As String
-        'Dim lenstring As Integer
+        'file_dialog.Filter = "DB|*.s3db"
+        ''Dim camino As String
+        'Dim archivo As String
+        ''Dim lenstring As Integer
 
-        If file_dialog.ShowDialog() = DialogResult.OK Then
-            archivo = file_dialog.FileName
-            DB_Path = "Data Source=" & archivo
-        Else
-            MsgBox("No se cargo ningun Archivo", vbOKOnly)
-            Exit Sub
-        End If
+        'If file_dialog.ShowDialog() = DialogResult.OK Then
+        '    archivo = file_dialog.FileName
+        '    DB_Path = "Data Source=" & archivo
+        'Else
+        '    MsgBox("No se cargo ningun Archivo", vbOKOnly)
+        '    Exit Sub
+        'End If
 
 
         Dim SQLiteCon As New SQLiteConnection(DB_Path)
@@ -201,14 +210,19 @@ Public Class RollArt_SQLITE
         Dim TableDB As New DataTable
 
         Try
-
-            LoadDB("select NumStartingList, B.Name, A.ID_Atleta, Societa, Country, B.ID_Specialita, Position from Participants as A, Athletes as B, GaraFinal as G where A.ID_GaraParams = 1 AND A.ID_SEGMENT = G.ID_SEGMENT AND A.ID_GaraParams = G.ID_GaraParams AND A.ID_SEGMENT = 1 AND B.ID_Atleta = G.ID_Atleta AND A.ID_Atleta = B.ID_Atleta ORDER BY Position", TableDB, SQLiteCon)
+            Dim id_gara As Integer
+            id_gara = treeEvents.SelectedNode.Tag
+            'LoadDB("select NumStartingList, B.Name, A.ID_Atleta, Societa, Country, B.ID_Specialita, Position from Participants as A, Athletes as B, GaraFinal as G where A.ID_GaraParams = 1 AND A.ID_SEGMENT = G.ID_SEGMENT AND A.ID_GaraParams = G.ID_GaraParams AND A.ID_SEGMENT = 1 AND B.ID_Atleta = G.ID_Atleta AND A.ID_Atleta = B.ID_Atleta ORDER BY Position", TableDB, SQLiteCon)
+            LoadDB("select NumStartingList, B.Name as nombre , A.ID_Atleta, Societa, Country, B.ID_Specialita, Position from Participants as A, Athletes as B, GaraFinal as G where A.ID_GaraParams = " & id_gara & " AND  A.ID_SEGMENT = G.ID_SEGMENT AND A.ID_GaraParams = G.ID_GaraParams AND A.ID_SEGMENT = 1 AND B.ID_Atleta = G.ID_Atleta AND A.ID_Atleta = B.ID_Atleta ORDER BY Position", TableDB, SQLiteCon)
 
 
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
 
+        DataGridViewTable.DataSource = Nothing
+        DataGridViewTable.DataSource = TableDB
+        DataGridViewTable.ClearSelection()
 
         Dim tabla_atleta(TableDB.Rows.Count - 1, 7) As String
         Dim index_Cell As Integer
@@ -222,6 +236,7 @@ Public Class RollArt_SQLITE
         Dim alto As Integer
         Panel_Tabla.BackColor = Color.WhiteSmoke
         Index_row = 0
+        chk_lista_participantes.Items.Clear()
         For Each row As DataRow In TableDB.Rows
             index_Cell = 0
             checBox(Index_row) = New CheckBox
@@ -229,8 +244,11 @@ Public Class RollArt_SQLITE
             checBox(Index_row).Left = 0
             checBox(Index_row).Top = 20 * Index_row
             Panel_Tabla.Controls.Add(checBox(Index_row))
+            chk_lista_participantes.Items.Add(row("nombre"))
+
             For Each cell As String In row.ItemArray
                 'do what you want!
+
                 tabla_atleta(Index_row, index_Cell) = cell
 
                 textBox(Index_row, index_Cell) = New Label

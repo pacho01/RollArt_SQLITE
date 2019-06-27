@@ -58,8 +58,9 @@ Partial Class RollArt_SQLITE
         Me.ButtonUpdate = New System.Windows.Forms.Button()
         Me.ButtonRefresh = New System.Windows.Forms.Button()
         Me.ButtonDelete = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btn_ver_participantes = New System.Windows.Forms.Button()
         Me.btn_OpenDB = New System.Windows.Forms.Button()
+        Me.chk_lista_participantes = New System.Windows.Forms.CheckedListBox()
         CType(Me.DataGridViewTable, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStripEditor.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -69,7 +70,7 @@ Partial Class RollArt_SQLITE
         '
         'TextBoxSearch
         '
-        Me.TextBoxSearch.Location = New System.Drawing.Point(215, 658)
+        Me.TextBoxSearch.Location = New System.Drawing.Point(250, 785)
         Me.TextBoxSearch.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.TextBoxSearch.Name = "TextBoxSearch"
         Me.TextBoxSearch.Size = New System.Drawing.Size(347, 20)
@@ -79,11 +80,12 @@ Partial Class RollArt_SQLITE
         '
         Me.DataGridViewTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewTable.ContextMenuStrip = Me.ContextMenuStripEditor
-        Me.DataGridViewTable.Location = New System.Drawing.Point(763, 474)
+        Me.DataGridViewTable.Location = New System.Drawing.Point(106, 271)
         Me.DataGridViewTable.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.DataGridViewTable.Name = "DataGridViewTable"
+        Me.DataGridViewTable.ReadOnly = True
         Me.DataGridViewTable.RowTemplate.Height = 31
-        Me.DataGridViewTable.Size = New System.Drawing.Size(107, 118)
+        Me.DataGridViewTable.Size = New System.Drawing.Size(711, 283)
         Me.DataGridViewTable.TabIndex = 20
         '
         'ContextMenuStripEditor
@@ -109,7 +111,7 @@ Partial Class RollArt_SQLITE
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 474)
+        Me.GroupBox1.Location = New System.Drawing.Point(47, 601)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(746, 152)
         Me.GroupBox1.TabIndex = 22
@@ -231,7 +233,7 @@ Partial Class RollArt_SQLITE
         Me.CheckBoxSearchbyName.AutoSize = True
         Me.CheckBoxSearchbyName.Checked = True
         Me.CheckBoxSearchbyName.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBoxSearchbyName.Location = New System.Drawing.Point(217, 635)
+        Me.CheckBoxSearchbyName.Location = New System.Drawing.Point(252, 762)
         Me.CheckBoxSearchbyName.Name = "CheckBoxSearchbyName"
         Me.CheckBoxSearchbyName.Size = New System.Drawing.Size(127, 17)
         Me.CheckBoxSearchbyName.TabIndex = 23
@@ -241,7 +243,7 @@ Partial Class RollArt_SQLITE
         'CheckBoxSearchbyID
         '
         Me.CheckBoxSearchbyID.AutoSize = True
-        Me.CheckBoxSearchbyID.Location = New System.Drawing.Point(470, 635)
+        Me.CheckBoxSearchbyID.Location = New System.Drawing.Point(505, 762)
         Me.CheckBoxSearchbyID.Name = "CheckBoxSearchbyID"
         Me.CheckBoxSearchbyID.Size = New System.Drawing.Size(91, 17)
         Me.CheckBoxSearchbyID.TabIndex = 24
@@ -251,9 +253,9 @@ Partial Class RollArt_SQLITE
         'Panel_Tabla
         '
         Me.Panel_Tabla.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel_Tabla.Location = New System.Drawing.Point(12, 275)
+        Me.Panel_Tabla.Location = New System.Drawing.Point(826, 215)
         Me.Panel_Tabla.Name = "Panel_Tabla"
-        Me.Panel_Tabla.Size = New System.Drawing.Size(772, 152)
+        Me.Panel_Tabla.Size = New System.Drawing.Size(714, 105)
         Me.Panel_Tabla.TabIndex = 25
         '
         'Panel1
@@ -263,7 +265,7 @@ Partial Class RollArt_SQLITE
         Me.Panel1.Controls.Add(Me.treeEvents)
         Me.Panel1.Location = New System.Drawing.Point(106, 9)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(678, 257)
+        Me.Panel1.Size = New System.Drawing.Size(714, 257)
         Me.Panel1.TabIndex = 26
         '
         'Label7
@@ -286,7 +288,7 @@ Partial Class RollArt_SQLITE
         Me.treeEvents.Name = "treeEvents"
         Me.treeEvents.SelectedImageIndex = 1
         Me.treeEvents.ShowPlusMinus = False
-        Me.treeEvents.Size = New System.Drawing.Size(472, 250)
+        Me.treeEvents.Size = New System.Drawing.Size(631, 250)
         Me.treeEvents.TabIndex = 0
         '
         'ImageList1
@@ -365,7 +367,7 @@ Partial Class RollArt_SQLITE
         Me.ButtonSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.ButtonSave.Image = Global.RollArt_SQLITE.My.Resources.Resources.guardar_32
         Me.ButtonSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.ButtonSave.Location = New System.Drawing.Point(664, 635)
+        Me.ButtonSave.Location = New System.Drawing.Point(699, 762)
         Me.ButtonSave.Margin = New System.Windows.Forms.Padding(2)
         Me.ButtonSave.Name = "ButtonSave"
         Me.ButtonSave.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -379,7 +381,7 @@ Partial Class RollArt_SQLITE
         '
         Me.ButtonUpdate.Image = Global.RollArt_SQLITE.My.Resources.Resources.editar_32
         Me.ButtonUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.ButtonUpdate.Location = New System.Drawing.Point(566, 637)
+        Me.ButtonUpdate.Location = New System.Drawing.Point(601, 764)
         Me.ButtonUpdate.Margin = New System.Windows.Forms.Padding(2)
         Me.ButtonUpdate.Name = "ButtonUpdate"
         Me.ButtonUpdate.Size = New System.Drawing.Size(94, 43)
@@ -392,7 +394,7 @@ Partial Class RollArt_SQLITE
         '
         Me.ButtonRefresh.Image = Global.RollArt_SQLITE.My.Resources.Resources.refresh_32
         Me.ButtonRefresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.ButtonRefresh.Location = New System.Drawing.Point(110, 635)
+        Me.ButtonRefresh.Location = New System.Drawing.Point(145, 762)
         Me.ButtonRefresh.Margin = New System.Windows.Forms.Padding(2)
         Me.ButtonRefresh.Name = "ButtonRefresh"
         Me.ButtonRefresh.Size = New System.Drawing.Size(94, 43)
@@ -406,7 +408,7 @@ Partial Class RollArt_SQLITE
         Me.ButtonDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.ButtonDelete.Image = Global.RollArt_SQLITE.My.Resources.Resources.papelera_32
         Me.ButtonDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.ButtonDelete.Location = New System.Drawing.Point(12, 635)
+        Me.ButtonDelete.Location = New System.Drawing.Point(47, 762)
         Me.ButtonDelete.Margin = New System.Windows.Forms.Padding(2)
         Me.ButtonDelete.Name = "ButtonDelete"
         Me.ButtonDelete.Size = New System.Drawing.Size(94, 43)
@@ -415,31 +417,46 @@ Partial Class RollArt_SQLITE
         Me.ButtonDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.ButtonDelete.UseVisualStyleBackColor = True
         '
-        'Button1
+        'btn_ver_participantes
         '
-        Me.Button1.Location = New System.Drawing.Point(9, 140)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(76, 26)
-        Me.Button1.TabIndex = 29
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btn_ver_participantes.Image = Global.RollArt_SQLITE.My.Resources.Resources.tarjeta_32
+        Me.btn_ver_participantes.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btn_ver_participantes.Location = New System.Drawing.Point(9, 154)
+        Me.btn_ver_participantes.Name = "btn_ver_participantes"
+        Me.btn_ver_participantes.Size = New System.Drawing.Size(76, 59)
+        Me.btn_ver_participantes.TabIndex = 29
+        Me.btn_ver_participantes.Text = "Ver Participantes"
+        Me.btn_ver_participantes.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.btn_ver_participantes.UseVisualStyleBackColor = True
         '
         'btn_OpenDB
         '
-        Me.btn_OpenDB.Location = New System.Drawing.Point(9, 99)
+        Me.btn_OpenDB.Image = Global.RollArt_SQLITE.My.Resources.Resources.database_32
+        Me.btn_OpenDB.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btn_OpenDB.Location = New System.Drawing.Point(9, 89)
         Me.btn_OpenDB.Name = "btn_OpenDB"
-        Me.btn_OpenDB.Size = New System.Drawing.Size(76, 26)
+        Me.btn_OpenDB.Size = New System.Drawing.Size(76, 59)
         Me.btn_OpenDB.TabIndex = 28
         Me.btn_OpenDB.Text = "Open DB"
+        Me.btn_OpenDB.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.btn_OpenDB.UseVisualStyleBackColor = True
+        '
+        'chk_lista_participantes
+        '
+        Me.chk_lista_participantes.FormattingEnabled = True
+        Me.chk_lista_participantes.Location = New System.Drawing.Point(826, 19)
+        Me.chk_lista_participantes.Name = "chk_lista_participantes"
+        Me.chk_lista_participantes.Size = New System.Drawing.Size(258, 169)
+        Me.chk_lista_participantes.TabIndex = 30
         '
         'RollArt_SQLITE
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(793, 440)
-        Me.Controls.Add(Me.Button1)
+        Me.ClientSize = New System.Drawing.Size(824, 561)
+        Me.Controls.Add(Me.chk_lista_participantes)
+        Me.Controls.Add(Me.btn_ver_participantes)
         Me.Controls.Add(Me.btn_OpenDB)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.Panel1)
@@ -501,6 +518,7 @@ Partial Class RollArt_SQLITE
     Friend WithEvents Label7 As Label
     Friend WithEvents file_dialog As OpenFileDialog
     Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btn_ver_participantes As Button
     Friend WithEvents btn_OpenDB As Button
+    Friend WithEvents chk_lista_participantes As CheckedListBox
 End Class
