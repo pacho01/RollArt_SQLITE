@@ -1,19 +1,12 @@
 ﻿Imports System.Data.SQLite
 Imports System.Runtime.InteropServices
 
-'Structure Registro_formato
-'    Public cam1 As String
-'    Public cam2 As String
-'    Public cam3 As String
-'    Public cam4 As String
-'    Public cam5 As String
-'    Public cam6 As String
-'    Public cam7 As String
-'End Structure
+
 Public Class RollArt_SQLITE
     Dim DB_Path As String
-    Dim textBox(,) As Label
-    Dim checBox() As CheckBox
+    'Dim SQLiteCon As SQLiteConnection
+    'Dim textBox(,) As Label
+    'Dim checBox() As CheckBox
     '************aSIGNAMOS EL NOMBRE DE LA TABLA A LA QUE APUNTAR*************
     'Dim TableName As String = "tabledb"
     Dim TableName As String = "Athletes"
@@ -26,6 +19,7 @@ Public Class RollArt_SQLITE
     Private Shared Function SendMessage(ByVal hWnd As IntPtr, ByVal msg As Integer, ByVal wParam As Integer, <MarshalAs(UnmanagedType.LPWStr)> ByVal lParam As String) As Int32
     End Function
 
+
     Private Sub VBNetSQlite_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'CenterToScreen()
         TextBoxSearch.CharacterCasing = CharacterCasing.Normal
@@ -34,94 +28,36 @@ Public Class RollArt_SQLITE
 
 
         leer_Eventos()
-        Exit Sub
 
-        'SELECT DISTINCT G.Name, G.Place, G.Date, G.ID_GaraParams, S.Name, C.Name  FROM GaraParams G, Specialita S, Category C WHERE G.ID_Specialita = S.ID_Specialita AND G.ID_Category = C.ID_Category
-
-
-        file_dialog.Filter = "DB|*.s3db"
-        'Dim camino As String
-        Dim archivo As String
-        'Dim lenstring As Integer
-
-        If file_dialog.ShowDialog() = DialogResult.OK Then
-            archivo = file_dialog.FileName
-            DB_Path = "Data Source=" & archivo
-        Else
-            MsgBox("No se cargo ningun Archivo", vbOKOnly)
-            Exit Sub
-        End If
-
-
-        '****CAMBIAMOS EL NOMBRE DE LA BASE DE DATOS***************************************************
-        'DB_Path = "Data Source=" & Application.StartupPath & "\databasesqlite.db;" '"\rolljudge2.s3db;"
-        'DB_Path = "Data Source=" & Application.StartupPath & "\rolljudge2.s3db;"
-
-        '**********************************************************************************************
-
-
-        ComboBoxGender.SelectedItem = "- choose gender -"
-        ButtonUpdate.Enabled = False
-
-        Dim SQLiteCon As New SQLiteConnection(DB_Path)
-        Try
-            SQLiteCon.Open()
-        Catch ex As Exception
-            SQLiteCon.Dispose()
-            SQLiteCon = Nothing
-            MsgBox(ex.Message)
-            Exit Sub
-        End Try
-
-        Dim TableDB As New DataTable
-
-        Try
-            LoadDB("select*from " & TableName & " order by Name", TableDB, SQLiteCon)
-            'LoadDB("select NumStartingList, B.Name, A.ID_Atleta, Societa, Country, B.ID_Specialita, Position from Participants as A, Athletes as B, GaraFinal as G where A.ID_GaraParams = 5 AND A.ID_SEGMENT = G.ID_SEGMENT AND A.ID_GaraParams = G.ID_GaraParams AND A.ID_SEGMENT = 1 AND B.ID_Atleta = G.ID_Atleta AND A.ID_Atleta = B.ID_Atleta ORDER BY Position", TableDB, SQLiteCon)
-            DataGridViewTable.DataSource = Nothing
-            DataGridViewTable.DataSource = TableDB
-            'DataGridViewTable.Columns("Mobile_Phone").HeaderText = "Mobile Phone"
-            DataGridViewTable.ClearSelection()
-
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
-
-        TableDB.Dispose()
-        TableDB = Nothing
-        SQLiteCon.Close()
-        SQLiteCon.Dispose()
-        SQLiteCon = Nothing
-
-        'leer_posiciones_participantes()
-
-        'treeEvents.BeginUpdate()
-        'treeEvents.Nodes.Add("Eventos")
-        'treeEvents.Nodes.Add("Otro Event")
-        'treeEvents.Nodes(0).Nodes.Add("Valencia")
-        'treeEvents.Nodes(1).Nodes.Add("Madrid")
-        'treeEvents.Nodes.Add("Parent")
-        'treeEvents.Nodes(0).Nodes.Add("Child 1")
-        'treeEvents.Nodes(0).Nodes.Add("Child 2")
-        'treeEvents.Nodes(0).Nodes(1).Nodes.Add("Grandchild")
-        'treeEvents.Nodes(0).Nodes(1).Nodes(0).Nodes.Add("Great Grandchild")
-        'treeEvents.EndUpdate()
     End Sub
+
 
     Private Sub btn_OpenDB_Click_1(sender As Object, e As EventArgs) Handles btn_OpenDB.Click
         leer_Eventos()
     End Sub
 
+
     Private Sub btn_ver_participantes_Click(sender As Object, e As EventArgs) Handles btn_ver_participantes.Click
         leer_posiciones_participantes()
     End Sub
 
+    Function conecta_BD() As Boolean
+        Dim SQLiteCon As New SQLiteConnection(DB_Path)
+        Try
+            SQLiteCon.Open()
+            Return True
+        Catch ex As Exception
+            SQLiteCon.Dispose()
+            SQLiteCon = Nothing
+            MsgBox(ex.Message)
+            Return False
+        End Try
+    End Function
+
     Sub leer_Eventos()
 
         file_dialog.Filter = "DB|*.s3db"
-        'Dim camino As String
         Dim archivo As String
-        'Dim lenstring As Integer
 
         If file_dialog.ShowDialog() = DialogResult.OK Then
             archivo = file_dialog.FileName
@@ -145,10 +81,7 @@ Public Class RollArt_SQLITE
         Dim TableDB As New DataTable
 
         Try
-            LoadDB("SELECT DISTINCT G.Name as nombre, G.Place, G.Date, G.ID_GaraParams, S.Name, C.Name  FROM GaraParams G, Specialita S, Category C WHERE G.ID_Specialita = S.ID_Specialita AND G.ID_Category = C.ID_Category", TableDB, SQLiteCon)
-            'DataGridViewTable.DataSource = Nothing
-            'DataGridViewTable.DataSource = TableDB
-            'DataGridViewTable.ClearSelection()
+            LoadDB("SELECT DISTINCT G.Name as nombre, G.Place, G.Date, G.ID_GaraParams, S.Name as sname, C.Name as cname  FROM GaraParams G, Specialita S, Category C WHERE G.ID_Specialita = S.ID_Specialita AND G.ID_Category = C.ID_Category", TableDB, SQLiteCon)
 
             treeEvents.Nodes.Clear()
             treeEvents.BeginUpdate()
@@ -157,12 +90,13 @@ Public Class RollArt_SQLITE
             For Each row As DataRow In TableDB.Rows
 
                 Dim nombre As String = CStr(row("nombre"))
-                Dim nombre2 As String = CStr(row("name"))
+                Dim nombre2 As String = CStr(row("cname"))
                 Dim fecha As String = CStr(row("Date"))
 
                 treeEvents.Nodes(0).Nodes.Add(nombre)
                 treeEvents.Nodes(0).Nodes(i).Tag = row("ID_GaraParams")
                 treeEvents.Nodes(0).Nodes(i).Nodes.Add(nombre2 & " - " & fecha)
+                treeEvents.Nodes(0).Nodes(i).Nodes(0).Tag = row("ID_GaraParams")
                 i += 1
             Next
             treeEvents.EndUpdate()
@@ -181,22 +115,6 @@ Public Class RollArt_SQLITE
 
     Sub leer_posiciones_participantes()
 
-        ''DB_Path = "Data Source=" & Application.StartupPath & "\rolljudge2.s3db;"
-
-        'file_dialog.Filter = "DB|*.s3db"
-        ''Dim camino As String
-        'Dim archivo As String
-        ''Dim lenstring As Integer
-
-        'If file_dialog.ShowDialog() = DialogResult.OK Then
-        '    archivo = file_dialog.FileName
-        '    DB_Path = "Data Source=" & archivo
-        'Else
-        '    MsgBox("No se cargo ningun Archivo", vbOKOnly)
-        '    Exit Sub
-        'End If
-
-
         Dim SQLiteCon As New SQLiteConnection(DB_Path)
         Try
             SQLiteCon.Open()
@@ -212,8 +130,8 @@ Public Class RollArt_SQLITE
         Try
             Dim id_gara As Integer
             id_gara = treeEvents.SelectedNode.Tag
-            'LoadDB("select NumStartingList, B.Name, A.ID_Atleta, Societa, Country, B.ID_Specialita, Position from Participants as A, Athletes as B, GaraFinal as G where A.ID_GaraParams = 1 AND A.ID_SEGMENT = G.ID_SEGMENT AND A.ID_GaraParams = G.ID_GaraParams AND A.ID_SEGMENT = 1 AND B.ID_Atleta = G.ID_Atleta AND A.ID_Atleta = B.ID_Atleta ORDER BY Position", TableDB, SQLiteCon)
-            LoadDB("select NumStartingList, B.Name as nombre , A.ID_Atleta, Societa, Country, B.ID_Specialita, Position from Participants as A, Athletes as B, GaraFinal as G where A.ID_GaraParams = " & id_gara & " AND  A.ID_SEGMENT = G.ID_SEGMENT AND A.ID_GaraParams = G.ID_GaraParams AND A.ID_SEGMENT = 1 AND B.ID_Atleta = G.ID_Atleta AND A.ID_Atleta = B.ID_Atleta ORDER BY Position", TableDB, SQLiteCon)
+            'LoadDB("select NumStartingList as Sal, B.Name as nombre , A.ID_Atleta, Societa, Country, B.ID_Specialita, Position from Participants as A, Athletes as B, GaraFinal as G where A.ID_GaraParams = " & id_gara & " AND  A.ID_SEGMENT = G.ID_SEGMENT AND A.ID_GaraParams = G.ID_GaraParams AND A.ID_SEGMENT = 1 AND B.ID_Atleta = G.ID_Atleta AND A.ID_Atleta = B.ID_Atleta ORDER BY Position", TableDB, SQLiteCon)
+            LoadDB("select NumStartingList as Sal, B.Name as NOMBRE , Societa as CLUB, Country as PAIS,  Position as Pos from Participants as A, Athletes as B, GaraFinal as G where A.ID_GaraParams = " & id_gara & " AND  A.ID_SEGMENT = G.ID_SEGMENT AND A.ID_GaraParams = G.ID_GaraParams AND A.ID_SEGMENT = 1 AND B.ID_Atleta = G.ID_Atleta AND A.ID_Atleta = B.ID_Atleta ORDER BY Position", TableDB, SQLiteCon)
 
 
         Catch ex As Exception
@@ -222,90 +140,12 @@ Public Class RollArt_SQLITE
 
         DataGridViewTable.DataSource = Nothing
         DataGridViewTable.DataSource = TableDB
+        DataGridViewTable.Columns(0).Width = 30
+        DataGridViewTable.Columns(1).Width = 360
+        DataGridViewTable.Columns(2).Width = 200
+        DataGridViewTable.Columns(3).Width = 50
+        DataGridViewTable.Columns(4).Width = 30
         DataGridViewTable.ClearSelection()
-
-        Dim tabla_atleta(TableDB.Rows.Count - 1, 7) As String
-        Dim index_Cell As Integer
-        Dim Index_row As Integer
-        ReDim textBox(TableDB.Rows.Count - 1, 7)
-
-        ReDim checBox(TableDB.Rows.Count - 1)
-        Dim loc_x As Integer
-        Dim loc_y As Integer
-        Dim ancho As Integer
-        Dim alto As Integer
-        Panel_Tabla.BackColor = Color.WhiteSmoke
-        Index_row = 0
-        chk_lista_participantes.Items.Clear()
-        For Each row As DataRow In TableDB.Rows
-            index_Cell = 0
-            checBox(Index_row) = New CheckBox
-            checBox(Index_row).Size = New Size(20, 20)
-            checBox(Index_row).Left = 0
-            checBox(Index_row).Top = 20 * Index_row
-            Panel_Tabla.Controls.Add(checBox(Index_row))
-            chk_lista_participantes.Items.Add(row("nombre"))
-
-            For Each cell As String In row.ItemArray
-                'do what you want!
-
-                tabla_atleta(Index_row, index_Cell) = cell
-
-                textBox(Index_row, index_Cell) = New Label
-
-                textBox(Index_row, index_Cell).Text = cell
-                'textBox(Index_row, index_Cell).Size = New Size(50, 20)
-
-                textBox(Index_row, index_Cell).Top = 20 * Index_row
-                textBox(Index_row, index_Cell).BackColor = Color.LightGray
-                alto = 17
-                Select Case index_Cell
-                    Case 0
-                        ancho = 60
-
-                        loc_x = 20
-                        'textBox(Index_row, index_Cell).BackColor = Color.LightGray
-                    Case 1
-                        ancho = 300
-                        'alto = 20
-                        loc_x = 80
-                        'textBox(Index_row, index_Cell).BackColor = Color.LightGray
-                    Case 2
-                        ancho = 60
-                        'alto = 20
-                        loc_x = 380
-                    Case 3
-                        ancho = 90
-                        'alto = 20
-                        loc_x = 440
-                    Case 4
-                        ancho = 60
-                        'alto = 20
-                        loc_x = 530
-                    Case 5
-                        ancho = 60
-                        'alto = 20
-                        loc_x = 590
-                    Case 6
-                        ancho = 60
-                        'alto = 20
-                        loc_x = 650
-                End Select
-
-                textBox(Index_row, index_Cell).Left = loc_x
-                textBox(Index_row, index_Cell).BorderStyle = New BorderStyle()
-                textBox(Index_row, index_Cell).Size = New Size(ancho, alto)
-
-                Panel_Tabla.Controls.Add(textBox(Index_row, index_Cell))
-
-                index_Cell += 1
-            Next
-
-            Index_row += 1
-            Panel_Tabla.Size = New Size(710, (20 * Index_row) + 2)
-        Next row
-
-
 
         TableDB.Dispose()
         TableDB = Nothing
@@ -315,14 +155,6 @@ Public Class RollArt_SQLITE
 
 
     End Sub
-
-    Private Sub btn_OpenDB_Click(sender As Object, e As EventArgs)
-        'leer_posiciones_participantes()
-        leer_Eventos()
-
-    End Sub
-
-
 
     Private Sub VBNetSQlite_MouseClick(sender As Object, e As MouseEventArgs) Handles Me.MouseClick
         DataGridViewTable.ClearSelection()
