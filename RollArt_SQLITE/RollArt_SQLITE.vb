@@ -20,9 +20,6 @@ Public Class RollArt_SQLITE
         'CenterToScreen()
         TextBoxSearch.CharacterCasing = CharacterCasing.Normal
         SendMessage(TextBoxSearch.Handle, &H1501, 0, "Search...")
-
-
-
         leer_Eventos()
 
     End Sub
@@ -34,6 +31,10 @@ Public Class RollArt_SQLITE
 
 
     Private Sub btn_ver_participantes_Click(sender As Object, e As EventArgs) Handles btn_ver_participantes.Click
+        leer_posiciones_participantes()
+    End Sub
+
+    Private Sub treeEvents_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles treeEvents.AfterSelect
         leer_posiciones_participantes()
     End Sub
 
@@ -116,22 +117,23 @@ Public Class RollArt_SQLITE
             id_gara = treeEvents.SelectedNode.Tag
             'LoadDB("select NumStartingList as Sal, B.Name as nombre , A.ID_Atleta, Societa, Country, B.ID_Specialita, Position from Participants as A, Athletes as B, GaraFinal as G where A.ID_GaraParams = " & id_gara & " AND  A.ID_SEGMENT = G.ID_SEGMENT AND A.ID_GaraParams = G.ID_GaraParams AND A.ID_SEGMENT = 1 AND B.ID_Atleta = G.ID_Atleta AND A.ID_Atleta = B.ID_Atleta ORDER BY Position", TableDB, SQLiteCon)
             LoadDB("select NumStartingList as Sal, B.Name as NOMBRE , Societa as CLUB, Country as PAIS,  Position as Pos from Participants as A, Athletes as B, GaraFinal as G where A.ID_GaraParams = " & id_gara & " AND  A.ID_SEGMENT = G.ID_SEGMENT AND A.ID_GaraParams = G.ID_GaraParams AND A.ID_SEGMENT = 1 AND B.ID_Atleta = G.ID_Atleta AND A.ID_Atleta = B.ID_Atleta ORDER BY Position", TableDB, SQLiteCon)
-
+            txt_numActual.Text = TableDB.Rows.Count
+            num_ParticipantesFinal.Value = TableDB.Rows.Count
+            DataGridViewTable.DataSource = Nothing
+            DataGridViewTable.DataSource = TableDB
+            DataGridViewTable.Columns(0).Width = 30
+            DataGridViewTable.Columns(1).Width = 350
+            DataGridViewTable.Columns(2).Width = 190
+            DataGridViewTable.Columns(3).Width = 50
+            DataGridViewTable.Columns(4).Width = 30
+            DataGridViewTable.ClearSelection()
 
         Catch ex As Exception
             MsgBox(ex.Message)
-            Exit Sub
+            'Exit Sub
         End Try
 
-        txt_numActual.Text = TableDB.Rows.Count
-        DataGridViewTable.DataSource = Nothing
-        DataGridViewTable.DataSource = TableDB
-        DataGridViewTable.Columns(0).Width = 30
-        DataGridViewTable.Columns(1).Width = 360
-        DataGridViewTable.Columns(2).Width = 200
-        DataGridViewTable.Columns(3).Width = 50
-        DataGridViewTable.Columns(4).Width = 30
-        DataGridViewTable.ClearSelection()
+
 
         TableDB.Dispose()
         TableDB = Nothing
@@ -142,7 +144,56 @@ Public Class RollArt_SQLITE
 
     End Sub
 
+    Private Sub btn_recalcula_Click(sender As Object, e As EventArgs) Handles btn_recalcula.Click
 
+        Dim participantes As Integer = num_ParticipantesFinal.Value
+
+
+        'Select Case num_ParticipantesFinal
+        '    Case 1
+        '    Case 2
+        '    Case 3
+        '    Case 4
+        '    Case 5
+        '    Case 6
+        '    Case 7
+        '    Case 8
+        '    Case 9
+        '    Case 10
+        '    Case 11
+        '    Case 12
+        '    Case 13
+        '    Case 14
+        '    Case 15
+        '    Case 16
+        '    Case 17
+        '    Case 18
+        '    Case 19
+        '    Case 20
+        '    Case 21
+        '    Case 22
+        '    Case 23
+        '    Case 24
+        '    Case 25
+        '    Case 26
+        '    Case 27
+        '    Case 28
+        '    Case 29
+        '    Case 30
+        '    Case 31
+        '    Case 32
+        '    Case 33
+        '    Case 34
+        '    Case 35
+        '    Case 36
+        '    Case 37
+        'End Select
+
+
+
+
+
+    End Sub
 
 
 
