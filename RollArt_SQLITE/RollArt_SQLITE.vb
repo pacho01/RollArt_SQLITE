@@ -4,11 +4,7 @@ Imports System.Runtime.InteropServices
 
 Public Class RollArt_SQLITE
     Dim DB_Path As String
-    'Dim SQLiteCon As SQLiteConnection
-    'Dim textBox(,) As Label
-    'Dim checBox() As CheckBox
-    '************aSIGNAMOS EL NOMBRE DE LA TABLA A LA QUE APUNTAR*************
-    'Dim TableName As String = "tabledb"
+
     Dim TableName As String = "Athletes"
     '*************************************************************************
 
@@ -41,18 +37,6 @@ Public Class RollArt_SQLITE
         leer_posiciones_participantes()
     End Sub
 
-    Function conecta_BD() As Boolean
-        Dim SQLiteCon As New SQLiteConnection(DB_Path)
-        Try
-            SQLiteCon.Open()
-            Return True
-        Catch ex As Exception
-            SQLiteCon.Dispose()
-            SQLiteCon = Nothing
-            MsgBox(ex.Message)
-            Return False
-        End Try
-    End Function
 
     Sub leer_Eventos()
 
@@ -136,8 +120,10 @@ Public Class RollArt_SQLITE
 
         Catch ex As Exception
             MsgBox(ex.Message)
+            Exit Sub
         End Try
 
+        txt_numActual.Text = TableDB.Rows.Count
         DataGridViewTable.DataSource = Nothing
         DataGridViewTable.DataSource = TableDB
         DataGridViewTable.Columns(0).Width = 30
@@ -155,6 +141,41 @@ Public Class RollArt_SQLITE
 
 
     End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     Private Sub VBNetSQlite_MouseClick(sender As Object, e As MouseEventArgs) Handles Me.MouseClick
         DataGridViewTable.ClearSelection()
