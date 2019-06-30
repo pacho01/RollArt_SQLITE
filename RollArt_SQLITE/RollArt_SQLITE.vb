@@ -113,12 +113,16 @@ Public Class RollArt_SQLITE
         Dim TableDB As New DataTable
 
         Try
+            'Para saber de que evento se leera la lista de participantes consultamos el TAG del nodo
+            'donde se ha depositado el id del gara al cargar los eventos 
             Dim id_gara As Integer
             id_gara = treeEvents.SelectedNode.Tag
             'LoadDB("select NumStartingList as Sal, B.Name as nombre , A.ID_Atleta, Societa, Country, B.ID_Specialita, Position from Participants as A, Athletes as B, GaraFinal as G where A.ID_GaraParams = " & id_gara & " AND  A.ID_SEGMENT = G.ID_SEGMENT AND A.ID_GaraParams = G.ID_GaraParams AND A.ID_SEGMENT = 1 AND B.ID_Atleta = G.ID_Atleta AND A.ID_Atleta = B.ID_Atleta ORDER BY Position", TableDB, SQLiteCon)
             LoadDB("select NumStartingList as Sal, B.Name as NOMBRE , Societa as CLUB, Country as PAIS,  Position as Pos from Participants as A, Athletes as B, GaraFinal as G where A.ID_GaraParams = " & id_gara & " AND  A.ID_SEGMENT = G.ID_SEGMENT AND A.ID_GaraParams = G.ID_GaraParams AND A.ID_SEGMENT = 1 AND B.ID_Atleta = G.ID_Atleta AND A.ID_Atleta = B.ID_Atleta ORDER BY Position", TableDB, SQLiteCon)
+            'Contamos el numero de participantes y se muestra en el cuadro de texto y el selector de numeros
             txt_numActual.Text = TableDB.Rows.Count
             num_ParticipantesFinal.Value = TableDB.Rows.Count
+            'Cargamos TableDB en el gridview y asignamos el ancho de las celdas
             DataGridViewTable.DataSource = Nothing
             DataGridViewTable.DataSource = TableDB
             DataGridViewTable.Columns(0).Width = 30
@@ -147,51 +151,110 @@ Public Class RollArt_SQLITE
     Private Sub btn_recalcula_Click(sender As Object, e As EventArgs) Handles btn_recalcula.Click
 
         Dim participantes As Integer = num_ParticipantesFinal.Value
+        Dim grupo1, grupo2, grupo3, grupo4, grupo5, grupo6 As Integer
+        Dim fila As Integer
+        Dim columna As Integer
 
 
-        'Select Case num_ParticipantesFinal
-        '    Case 1
-        '    Case 2
-        '    Case 3
-        '    Case 4
-        '    Case 5
-        '    Case 6
-        '    Case 7
-        '    Case 8
-        '    Case 9
-        '    Case 10
-        '    Case 11
-        '    Case 12
-        '    Case 13
-        '    Case 14
-        '    Case 15
-        '    Case 16
-        '    Case 17
-        '    Case 18
-        '    Case 19
-        '    Case 20
-        '    Case 21
-        '    Case 22
-        '    Case 23
-        '    Case 24
-        '    Case 25
-        '    Case 26
-        '    Case 27
-        '    Case 28
-        '    Case 29
-        '    Case 30
-        '    Case 31
-        '    Case 32
-        '    Case 33
-        '    Case 34
-        '    Case 35
-        '    Case 36
-        '    Case 37
-        'End Select
+        Select Case participantes
+            Case 1
+                grupo1 = 1 : grupo2 = 0 : grupo3 = 0 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+            Case 2
+                grupo1 = 2 : grupo2 = 0 : grupo3 = 0 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+            Case 3
+                grupo1 = 3 : grupo2 = 0 : grupo3 = 0 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+            Case 4
+                grupo1 = 2 : grupo2 = 2 : grupo3 = 0 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+            Case 5
+                grupo1 = 3 : grupo2 = 2 : grupo3 = 0 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+            Case 6
+                grupo1 = 3 : grupo2 = 3 : grupo3 = 0 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+            Case 7
+                grupo1 = 4 : grupo2 = 3 : grupo3 = 0 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+            Case 8
+                grupo1 = 4 : grupo2 = 4 : grupo3 = 0 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+            Case 9
+                grupo1 = 5 : grupo2 = 4 : grupo3 = 0 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+            Case 10
+                grupo1 = 5 : grupo2 = 5 : grupo3 = 0 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+            Case 11
+                grupo1 = 6 : grupo2 = 5 : grupo3 = 0 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+            Case 12
+                grupo1 = 6 : grupo2 = 6 : grupo3 = 0 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+            Case 13
+                grupo1 = 5 : grupo2 = 4 : grupo3 = 4 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+            Case 14
+                grupo1 = 5 : grupo2 = 5 : grupo3 = 4 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+            Case 15
+                grupo1 = 5 : grupo2 = 5 : grupo3 = 5 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+            Case 16
+                grupo1 = 6 : grupo2 = 5 : grupo3 = 5 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+            Case 17
+                grupo1 = 6 : grupo2 = 6 : grupo3 = 5 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+            Case 18
+                grupo1 = 6 : grupo2 = 6 : grupo3 = 6 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+            Case 19
+                grupo1 = 5 : grupo2 = 5 : grupo3 = 5 : grupo4 = 4 : grupo5 = 0 : grupo6 = 0
+            Case 20
+                grupo1 = 5 : grupo2 = 5 : grupo3 = 5 : grupo4 = 5 : grupo5 = 0 : grupo6 = 0
+            Case 21
+                grupo1 = 6 : grupo2 = 5 : grupo3 = 5 : grupo4 = 5 : grupo5 = 0 : grupo6 = 0
+            Case 22
+                grupo1 = 6 : grupo2 = 6 : grupo3 = 5 : grupo4 = 5 : grupo5 = 0 : grupo6 = 0
+            Case 23
+                grupo1 = 6 : grupo2 = 6 : grupo3 = 6 : grupo4 = 5 : grupo5 = 0 : grupo6 = 0
+            Case 24
+                grupo1 = 6 : grupo2 = 6 : grupo3 = 6 : grupo4 = 6 : grupo5 = 0 : grupo6 = 0
+            Case 25
+                grupo1 = 5 : grupo2 = 5 : grupo3 = 5 : grupo4 = 5 : grupo5 = 5 : grupo6 = 0
+            Case 26
+                grupo1 = 6 : grupo2 = 5 : grupo3 = 5 : grupo4 = 5 : grupo5 = 5 : grupo6 = 0
+            Case 27
+                grupo1 = 6 : grupo2 = 6 : grupo3 = 5 : grupo4 = 5 : grupo5 = 5 : grupo6 = 0
+            Case 28
+                grupo1 = 6 : grupo2 = 6 : grupo3 = 6 : grupo4 = 5 : grupo5 = 5 : grupo6 = 0
+            Case 29
+                grupo1 = 6 : grupo2 = 6 : grupo3 = 6 : grupo4 = 6 : grupo5 = 5 : grupo6 = 0
+            Case 30
+                grupo1 = 6 : grupo2 = 6 : grupo3 = 6 : grupo4 = 6 : grupo5 = 6 : grupo6 = 0
+            Case 31
+                grupo1 = 7 : grupo2 = 6 : grupo3 = 6 : grupo4 = 6 : grupo5 = 6 : grupo6 = 0
+            Case 32
+                grupo1 = 7 : grupo2 = 7 : grupo3 = 6 : grupo4 = 6 : grupo5 = 6 : grupo6 = 0
+            Case 33
+                grupo1 = 7 : grupo2 = 7 : grupo3 = 7 : grupo4 = 6 : grupo5 = 6 : grupo6 = 0
+            Case 34
+                grupo1 = 7 : grupo2 = 7 : grupo3 = 7 : grupo4 = 7 : grupo5 = 6 : grupo6 = 0
+            Case 35
+                grupo1 = 7 : grupo2 = 7 : grupo3 = 7 : grupo4 = 7 : grupo5 = 7 : grupo6 = 0
+            Case 36
+                grupo1 = 6 : grupo2 = 6 : grupo3 = 6 : grupo4 = 6 : grupo5 = 6 : grupo6 = 6
+            Case 37
+                grupo1 = 7 : grupo2 = 6 : grupo3 = 6 : grupo4 = 6 : grupo5 = 6 : grupo6 = 6
+        End Select
 
+        Dim x_lop As Integer
+        Dim y_lop As Integer
+        fila = 0
+        columna = 0
+        For fila = 1 To grupo1
+            For columna = 0 To 4
+                DataGridViewTable.Rows(fila - 1).Cells(columna).Style.BackColor = Color.Beige
+            Next
 
+        Next
+        For fila = grupo1 To grupo1 + grupo2
+            For columna = 0 To 4
+                DataGridViewTable.Rows(fila).Cells(columna).Style.BackColor = Color.Aqua
+            Next
 
+        Next
+        For fila = grupo1 + grupo2 To grupo1 + grupo2 + grupo3
+            For columna = 0 To 4
+                DataGridViewTable.Rows(fila).Cells(columna).Style.BackColor = Color.Coral
+            Next
 
+        Next
 
     End Sub
 
