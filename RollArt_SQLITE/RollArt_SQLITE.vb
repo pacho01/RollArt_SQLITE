@@ -152,109 +152,186 @@ Public Class RollArt_SQLITE
 
         Dim participantes As Integer = num_ParticipantesFinal.Value
         Dim grupo1, grupo2, grupo3, grupo4, grupo5, grupo6 As Integer
+        Dim ParticipantesPorGrupo(6) As Integer
         Dim fila As Integer
         Dim columna As Integer
 
 
         Select Case participantes
             Case 1
-                grupo1 = 1 : grupo2 = 0 : grupo3 = 0 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {1, 0, 0, 0, 0, 0}
+                'ParticipantesPorGrupo(0) = 1 : ParticipantesPorGrupo(2) = 0 : ParticipantesPorGrupo(2) = 0 : ParticipantesPorGrupo(3) = 0 : ParticipantesPorGrupo(4) = 0 : ParticipantesPorGrupo(5) = 0
             Case 2
-                grupo1 = 2 : grupo2 = 0 : grupo3 = 0 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {2, 0, 0, 0, 0, 0}
+                'ParticipantesPorGrupo(0) = 2 : ParticipantesPorGrupo(2) = 0 : ParticipantesPorGrupo(2) = 0 : ParticipantesPorGrupo(3) = 0 : ParticipantesPorGrupo(4) = 0 : ParticipantesPorGrupo(5) = 0
             Case 3
-                grupo1 = 3 : grupo2 = 0 : grupo3 = 0 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {3, 0, 0, 0, 0, 0}
+                'ParticipantesPorGrupo(0) = 3 : ParticipantesPorGrupo(2) = 0 : ParticipantesPorGrupo(2) = 0 : ParticipantesPorGrupo(3) = 0 : ParticipantesPorGrupo(4) = 0 : ParticipantesPorGrupo(5) = 0
             Case 4
-                grupo1 = 2 : grupo2 = 2 : grupo3 = 0 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {2, 2, 0, 0, 0, 0}
+                'ParticipantesPorGrupo(0) = 2 : ParticipantesPorGrupo(2) = 2 : ParticipantesPorGrupo(2) = 0 : ParticipantesPorGrupo(3) = 0 : ParticipantesPorGrupo(4) = 0 : ParticipantesPorGrupo(5) = 0
             Case 5
-                grupo1 = 3 : grupo2 = 2 : grupo3 = 0 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {3, 2, 0, 0, 0, 0}
+                'ParticipantesPorGrupo(0) = 3 : ParticipantesPorGrupo(2) = 2 : ParticipantesPorGrupo(2) = 0 : ParticipantesPorGrupo(3) = 0 : ParticipantesPorGrupo(4) = 0 : ParticipantesPorGrupo(5) = 0
             Case 6
-                grupo1 = 3 : grupo2 = 3 : grupo3 = 0 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {3, 3, 0, 0, 0, 0}
+                'ParticipantesPorGrupo(0) = 3 : ParticipantesPorGrupo(2) = 3 : ParticipantesPorGrupo(2) = 0 : ParticipantesPorGrupo(3) = 0 : ParticipantesPorGrupo(4) = 0 : ParticipantesPorGrupo(5) = 0
             Case 7
-                grupo1 = 4 : grupo2 = 3 : grupo3 = 0 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {4, 3, 0, 0, 0, 0}
+                'ParticipantesPorGrupo(0) = 4 : ParticipantesPorGrupo(2) = 3 : ParticipantesPorGrupo(2) = 0 : ParticipantesPorGrupo(3) = 0 : ParticipantesPorGrupo(4) = 0 : ParticipantesPorGrupo(5) = 0
             Case 8
-                grupo1 = 4 : grupo2 = 4 : grupo3 = 0 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {4, 4, 0, 0, 0, 0}
+                'ParticipantesPorGrupo(0) = 4 : ParticipantesPorGrupo(2) = 4 : ParticipantesPorGrupo(2) = 0 : ParticipantesPorGrupo(3) = 0 : ParticipantesPorGrupo(4) = 0 : ParticipantesPorGrupo(5) = 0
             Case 9
-                grupo1 = 5 : grupo2 = 4 : grupo3 = 0 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {5, 4, 0, 0, 0, 0}
+                'ParticipantesPorGrupo(0) = 5 : ParticipantesPorGrupo(2) = 4 : ParticipantesPorGrupo(2) = 0 : ParticipantesPorGrupo(3) = 0 : ParticipantesPorGrupo(4) = 0 : ParticipantesPorGrupo(5) = 0
             Case 10
-                grupo1 = 5 : grupo2 = 5 : grupo3 = 0 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {5, 5, 0, 0, 0, 0}
+                'ParticipantesPorGrupo(0) = 5 : ParticipantesPorGrupo(2) = 5 : ParticipantesPorGrupo(2) = 0 : ParticipantesPorGrupo(3) = 0 : ParticipantesPorGrupo(4) = 0 : ParticipantesPorGrupo(5) = 0
             Case 11
-                grupo1 = 6 : grupo2 = 5 : grupo3 = 0 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {6, 5, 0, 0, 0, 0}
+                'ParticipantesPorGrupo(0) = 6 : ParticipantesPorGrupo(2) = 5 : ParticipantesPorGrupo(2) = 0 : ParticipantesPorGrupo(3) = 0 : ParticipantesPorGrupo(4) = 0 : ParticipantesPorGrupo(5) = 0
             Case 12
-                grupo1 = 6 : grupo2 = 6 : grupo3 = 0 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {6, 6, 0, 0, 0, 0}
+                'ParticipantesPorGrupo(0) = 6 : ParticipantesPorGrupo(2) = 6 : ParticipantesPorGrupo(2) = 0 : ParticipantesPorGrupo(3) = 0 : ParticipantesPorGrupo(4) = 0 : ParticipantesPorGrupo(5) = 0
             Case 13
-                grupo1 = 5 : grupo2 = 4 : grupo3 = 4 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {5, 4, 4, 0, 0, 0}
+                'ParticipantesPorGrupo(0) = 5 : ParticipantesPorGrupo(2) = 4 : ParticipantesPorGrupo(2) = 4 : ParticipantesPorGrupo(3) = 0 : ParticipantesPorGrupo(4) = 0 : ParticipantesPorGrupo(5) = 0
             Case 14
-                grupo1 = 5 : grupo2 = 5 : grupo3 = 4 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {5, 5, 4, 0, 0, 0}
+                'ParticipantesPorGrupo(0) = 5 : ParticipantesPorGrupo(2) = 5 : ParticipantesPorGrupo(2) = 4 : ParticipantesPorGrupo(3) = 0 : ParticipantesPorGrupo(4) = 0 : ParticipantesPorGrupo(5) = 0
             Case 15
-                grupo1 = 5 : grupo2 = 5 : grupo3 = 5 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {5, 5, 5, 0, 0, 0}
+                'ParticipantesPorGrupo(0) = 5 : ParticipantesPorGrupo(2) = 5 : ParticipantesPorGrupo(2) = 5 : ParticipantesPorGrupo(3) = 0 : ParticipantesPorGrupo(4) = 0 : ParticipantesPorGrupo(5) = 0
             Case 16
-                grupo1 = 6 : grupo2 = 5 : grupo3 = 5 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {6, 5, 5, 0, 0, 0}
+                'ParticipantesPorGrupo(0) = 6 : ParticipantesPorGrupo(2) = 5 : ParticipantesPorGrupo(2) = 5 : ParticipantesPorGrupo(3) = 0 : ParticipantesPorGrupo(4) = 0 : ParticipantesPorGrupo(5) = 0
             Case 17
-                grupo1 = 6 : grupo2 = 6 : grupo3 = 5 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {6, 6, 5, 0, 0, 0}
+                'ParticipantesPorGrupo(0) = 6 : ParticipantesPorGrupo(2) = 6 : ParticipantesPorGrupo(2) = 5 : ParticipantesPorGrupo(3) = 0 : ParticipantesPorGrupo(4) = 0 : ParticipantesPorGrupo(5) = 0
             Case 18
-                grupo1 = 6 : grupo2 = 6 : grupo3 = 6 : grupo4 = 0 : grupo5 = 0 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {6, 6, 6, 0, 0, 0}
+                'ParticipantesPorGrupo(0) = 6 : ParticipantesPorGrupo(2) = 6 : ParticipantesPorGrupo(2) = 6 : ParticipantesPorGrupo(3) = 0 : ParticipantesPorGrupo(4) = 0 : ParticipantesPorGrupo(5) = 0
             Case 19
-                grupo1 = 5 : grupo2 = 5 : grupo3 = 5 : grupo4 = 4 : grupo5 = 0 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {5, 5, 5, 4, 0, 0}
+                'ParticipantesPorGrupo(0) = 5 : ParticipantesPorGrupo(2) = 5 : ParticipantesPorGrupo(2) = 5 : ParticipantesPorGrupo(3) = 4 : ParticipantesPorGrupo(4) = 0 : ParticipantesPorGrupo(5) = 0
             Case 20
-                grupo1 = 5 : grupo2 = 5 : grupo3 = 5 : grupo4 = 5 : grupo5 = 0 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {5, 5, 5, 5, 0, 0}
+                'ParticipantesPorGrupo(0) = 5 : ParticipantesPorGrupo(2) = 5 : ParticipantesPorGrupo(2) = 5 : ParticipantesPorGrupo(3) = 5 : ParticipantesPorGrupo(4) = 0 : ParticipantesPorGrupo(5) = 0
             Case 21
-                grupo1 = 6 : grupo2 = 5 : grupo3 = 5 : grupo4 = 5 : grupo5 = 0 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {6, 5, 5, 5, 0, 0}
+                'ParticipantesPorGrupo(0) = 6 : ParticipantesPorGrupo(2) = 5 : ParticipantesPorGrupo(2) = 5 : ParticipantesPorGrupo(3) = 5 : ParticipantesPorGrupo(4) = 0 : ParticipantesPorGrupo(5) = 0
             Case 22
-                grupo1 = 6 : grupo2 = 6 : grupo3 = 5 : grupo4 = 5 : grupo5 = 0 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {6, 6, 5, 5, 0, 0}
+                'ParticipantesPorGrupo(0) = 6 : ParticipantesPorGrupo(2) = 6 : ParticipantesPorGrupo(2) = 5 : ParticipantesPorGrupo(3) = 5 : ParticipantesPorGrupo(4) = 0 : ParticipantesPorGrupo(5) = 0
             Case 23
-                grupo1 = 6 : grupo2 = 6 : grupo3 = 6 : grupo4 = 5 : grupo5 = 0 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {6, 6, 6, 5, 0, 0}
+                'ParticipantesPorGrupo(0) = 6 : ParticipantesPorGrupo(2) = 6 : ParticipantesPorGrupo(2) = 6 : ParticipantesPorGrupo(3) = 5 : ParticipantesPorGrupo(4) = 0 : ParticipantesPorGrupo(5) = 0
             Case 24
-                grupo1 = 6 : grupo2 = 6 : grupo3 = 6 : grupo4 = 6 : grupo5 = 0 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {6, 6, 6, 6, 0, 0}
+                'ParticipantesPorGrupo(0) = 6 : ParticipantesPorGrupo(2) = 6 : ParticipantesPorGrupo(2) = 6 : ParticipantesPorGrupo(3) = 6 : ParticipantesPorGrupo(4) = 0 : ParticipantesPorGrupo(5) = 0
             Case 25
-                grupo1 = 5 : grupo2 = 5 : grupo3 = 5 : grupo4 = 5 : grupo5 = 5 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {5, 5, 5, 5, 5, 0}
+                'ParticipantesPorGrupo(0) = 5 : ParticipantesPorGrupo(2) = 5 : ParticipantesPorGrupo(2) = 5 : ParticipantesPorGrupo(3) = 5 : ParticipantesPorGrupo(4) = 5 : ParticipantesPorGrupo(5) = 0
             Case 26
-                grupo1 = 6 : grupo2 = 5 : grupo3 = 5 : grupo4 = 5 : grupo5 = 5 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {6, 5, 5, 5, 5, 0}
+                'ParticipantesPorGrupo(0) = 6 : ParticipantesPorGrupo(2) = 5 : ParticipantesPorGrupo(2) = 5 : ParticipantesPorGrupo(3) = 5 : ParticipantesPorGrupo(4) = 5 : ParticipantesPorGrupo(5) = 0
             Case 27
-                grupo1 = 6 : grupo2 = 6 : grupo3 = 5 : grupo4 = 5 : grupo5 = 5 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {6, 6, 5, 5, 5, 0}
+                'ParticipantesPorGrupo(0) = 6 : ParticipantesPorGrupo(2) = 6 : ParticipantesPorGrupo(2) = 5 : ParticipantesPorGrupo(3) = 5 : ParticipantesPorGrupo(4) = 5 : ParticipantesPorGrupo(5) = 0
             Case 28
-                grupo1 = 6 : grupo2 = 6 : grupo3 = 6 : grupo4 = 5 : grupo5 = 5 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {6, 6, 6, 5, 5, 0}
+                'ParticipantesPorGrupo(0) = 6 : ParticipantesPorGrupo(2) = 6 : ParticipantesPorGrupo(2) = 6 : ParticipantesPorGrupo(3) = 5 : ParticipantesPorGrupo(4) = 5 : ParticipantesPorGrupo(5) = 0
             Case 29
-                grupo1 = 6 : grupo2 = 6 : grupo3 = 6 : grupo4 = 6 : grupo5 = 5 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {6, 6, 6, 6, 5, 0}
+                'ParticipantesPorGrupo(0) = 6 : ParticipantesPorGrupo(2) = 6 : ParticipantesPorGrupo(2) = 6 : ParticipantesPorGrupo(3) = 6 : ParticipantesPorGrupo(4) = 5 : ParticipantesPorGrupo(5) = 0
             Case 30
-                grupo1 = 6 : grupo2 = 6 : grupo3 = 6 : grupo4 = 6 : grupo5 = 6 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {6, 6, 6, 6, 6, 0}
+                'ParticipantesPorGrupo(0) = 6 : ParticipantesPorGrupo(2) = 6 : ParticipantesPorGrupo(2) = 6 : ParticipantesPorGrupo(3) = 6 : ParticipantesPorGrupo(4) = 6 : ParticipantesPorGrupo(5) = 0
             Case 31
-                grupo1 = 7 : grupo2 = 6 : grupo3 = 6 : grupo4 = 6 : grupo5 = 6 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {7, 6, 6, 6, 6, 0}
+                'ParticipantesPorGrupo(0) = 7 : ParticipantesPorGrupo(2) = 6 : ParticipantesPorGrupo(2) = 6 : ParticipantesPorGrupo(3) = 6 : ParticipantesPorGrupo(4) = 6 : ParticipantesPorGrupo(5) = 0
             Case 32
-                grupo1 = 7 : grupo2 = 7 : grupo3 = 6 : grupo4 = 6 : grupo5 = 6 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {7, 7, 6, 6, 6, 0}
+                'ParticipantesPorGrupo(0) = 7 : ParticipantesPorGrupo(2) = 7 : ParticipantesPorGrupo(2) = 6 : ParticipantesPorGrupo(3) = 6 : ParticipantesPorGrupo(4) = 6 : ParticipantesPorGrupo(5) = 0
             Case 33
-                grupo1 = 7 : grupo2 = 7 : grupo3 = 7 : grupo4 = 6 : grupo5 = 6 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {7, 7, 7, 6, 6, 0}
+                'ParticipantesPorGrupo(0) = 7 : ParticipantesPorGrupo(2) = 7 : ParticipantesPorGrupo(2) = 7 : ParticipantesPorGrupo(3) = 6 : ParticipantesPorGrupo(4) = 6 : ParticipantesPorGrupo(5) = 0
             Case 34
-                grupo1 = 7 : grupo2 = 7 : grupo3 = 7 : grupo4 = 7 : grupo5 = 6 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {7, 7, 7, 7, 6, 0}
+                'ParticipantesPorGrupo(0) = 7 : ParticipantesPorGrupo(2) = 7 : ParticipantesPorGrupo(2) = 7 : ParticipantesPorGrupo(3) = 7 : ParticipantesPorGrupo(4) = 6 : ParticipantesPorGrupo(5) = 0
             Case 35
-                grupo1 = 7 : grupo2 = 7 : grupo3 = 7 : grupo4 = 7 : grupo5 = 7 : grupo6 = 0
+                ParticipantesPorGrupo = New Integer() {7, 7, 7, 7, 7, 0}
+                'ParticipantesPorGrupo(0) = 7 : ParticipantesPorGrupo(2) = 7 : ParticipantesPorGrupo(2) = 7 : ParticipantesPorGrupo(3) = 7 : ParticipantesPorGrupo(4) = 7 : ParticipantesPorGrupo(5) = 0
             Case 36
-                grupo1 = 6 : grupo2 = 6 : grupo3 = 6 : grupo4 = 6 : grupo5 = 6 : grupo6 = 6
+                ParticipantesPorGrupo = New Integer() {6, 6, 6, 6, 6, 6}
+                'ParticipantesPorGrupo(0) = 6 : ParticipantesPorGrupo(2) = 6 : ParticipantesPorGrupo(2) = 6 : ParticipantesPorGrupo(3) = 6 : ParticipantesPorGrupo(4) = 6 : ParticipantesPorGrupo(5) = 6
             Case 37
-                grupo1 = 7 : grupo2 = 6 : grupo3 = 6 : grupo4 = 6 : grupo5 = 6 : grupo6 = 6
+                ParticipantesPorGrupo = New Integer() {7, 6, 6, 6, 6, 6}
+                'ParticipantesPorGrupo(0) = 7 : ParticipantesPorGrupo(2) = 6 : ParticipantesPorGrupo(2) = 6 : ParticipantesPorGrupo(3) = 6 : ParticipantesPorGrupo(4) = 6 : ParticipantesPorGrupo(5) = 6
         End Select
 
         Dim x_lop As Integer
         Dim y_lop As Integer
         fila = 0
         columna = 0
-        For fila = 1 To grupo1
-            For columna = 0 To 4
-                DataGridViewTable.Rows(fila - 1).Cells(columna).Style.BackColor = Color.Beige
-            Next
+        'For fila = 1 To grupo1
+        '    For columna = 0 To 4
+        '        DataGridViewTable.Rows(fila - 1).Cells(columna).Style.BackColor = Color.Beige
+        '    Next
 
-        Next
-        For fila = grupo1 To grupo1 + grupo2
-            For columna = 0 To 4
-                DataGridViewTable.Rows(fila).Cells(columna).Style.BackColor = Color.Aqua
-            Next
+        'Next
+        'For fila = grupo1 To grupo1 + grupo2
+        '    For columna = 0 To 4
+        '        DataGridViewTable.Rows(fila).Cells(columna).Style.BackColor = Color.Aqua
+        '    Next
 
-        Next
-        For fila = grupo1 + grupo2 To grupo1 + grupo2 + grupo3
-            For columna = 0 To 4
-                DataGridViewTable.Rows(fila).Cells(columna).Style.BackColor = Color.Coral
-            Next
+        'Next
+        'For fila = grupo1 + grupo2 To grupo1 + grupo2 + grupo3
+        '    For columna = 0 To 4
+        '        DataGridViewTable.Rows(fila).Cells(columna).Style.BackColor = Color.Coral
+        '    Next
 
+        'Next
+
+
+        Dim loop_grupo As Integer
+        Dim acumulado As Integer
+        acumulado = 0
+        Dim colorin As Color
+        For loop_grupo = 0 To 5
+            Select Case loop_grupo
+                Case 0
+                    colorin = Color.Coral
+                Case 1
+                    colorin = Color.WhiteSmoke
+                Case 2
+                    colorin = Color.Violet
+                Case 3
+                    colorin = Color.Yellow
+                Case 4
+                    colorin = Color.Turquoise
+                Case 5
+                    colorin = Color.Tomato
+            End Select
+            If ParticipantesPorGrupo(loop_grupo) > 0 Then
+                For fila = acumulado To (acumulado + ParticipantesPorGrupo(loop_grupo)) - 1
+                    For columna = 0 To 4
+                        DataGridViewTable.Rows(fila).Cells(columna).Style.BackColor = colorin
+                        If columna = 4 Then
+                            DataGridViewTable.Rows(fila).Cells(columna).Value = (acumulado * 1000 + Rnd() * ParticipantesPorGrupo(loop_grupo) * 100)
+                        End If
+                    Next
+                Next
+                acumulado += ParticipantesPorGrupo(loop_grupo)
+            End If
         Next
+
+
+
+
+
+
 
     End Sub
 
