@@ -485,7 +485,7 @@ Partial Class RollArt_SQLITE
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(93, 65)
         Me.Label9.TabIndex = 33
-        Me.Label9.Text = "Participantes en ronda 1"
+        Me.Label9.Text = "participantes_para_sorteo en ronda 1"
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'txt_numActual

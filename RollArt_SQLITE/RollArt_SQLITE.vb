@@ -113,13 +113,13 @@ Public Class RollArt_SQLITE
         Dim TableDB As New DataTable
 
         Try
-            'Para saber de que evento se leera la lista de participantes consultamos el TAG del nodo
+            'Para saber de que evento se leera la lista de numero_participantes_en_sorteo consultamos el TAG del nodo
             'donde se ha depositado el id del gara al cargar los eventos 
             Dim id_gara As Integer
             id_gara = treeEvents.SelectedNode.Tag
             'LoadDB("select NumStartingList as Sal, B.Name as nombre , A.ID_Atleta, Societa, Country, B.ID_Specialita, Position from Participants as A, Athletes as B, GaraFinal as G where A.ID_GaraParams = " & id_gara & " AND  A.ID_SEGMENT = G.ID_SEGMENT AND A.ID_GaraParams = G.ID_GaraParams AND A.ID_SEGMENT = 1 AND B.ID_Atleta = G.ID_Atleta AND A.ID_Atleta = B.ID_Atleta ORDER BY Position", TableDB, SQLiteCon)
             LoadDB("select NumStartingList as Sal, B.Name as NOMBRE , Societa as CLUB, Country as PAIS,  Position as Pos from Participants as A, Athletes as B, GaraFinal as G where A.ID_GaraParams = " & id_gara & " AND  A.ID_SEGMENT = G.ID_SEGMENT AND A.ID_GaraParams = G.ID_GaraParams AND A.ID_SEGMENT = 1 AND B.ID_Atleta = G.ID_Atleta AND A.ID_Atleta = B.ID_Atleta ORDER BY Position", TableDB, SQLiteCon)
-            'Contamos el numero de participantes y se muestra en el cuadro de texto y el selector de numeros
+            'Contamos el numero de numero_participantes_en_sorteo y se muestra en el cuadro de texto y el selector de numeros
             txt_numActual.Text = TableDB.Rows.Count
             num_ParticipantesFinal.Value = TableDB.Rows.Count
             'Cargamos TableDB en el gridview y asignamos el ancho de las celdas
@@ -150,155 +150,117 @@ Public Class RollArt_SQLITE
 
     Private Sub btn_recalcula_Click(sender As Object, e As EventArgs) Handles btn_recalcula.Click
 
-        Dim participantes As Integer = num_ParticipantesFinal.Value
-        Dim ParticipantesPorGrupo(6) As Integer
-        Dim fila As Integer
-        Dim columna As Integer
+        Dim numero_participantes_en_sorteo As Integer = num_ParticipantesFinal.Value
+        Dim matriz_grupos_sorteo(,) As Integer
+        Dim filas_en_tabla As Integer
+        Dim celdas_en_fila As Integer
 
-        Dim loop_grupo As Integer
-        Dim acumulado As Integer
+        Dim loop_grupos_de_sorteo_posibles As Integer
+        Dim posiciones_acumuladas_de_grupos_ya_sorteados As Integer
         Dim nuevapos As Integer
-        Dim colorin As Color
-        Dim difieren As Boolean
+        Dim color_de_fondo As Color
+        Dim diferentes_posActual_Anteriores As Boolean
 
-        If txt_numActual.Text <> num_ParticipantesFinal.Value Then borra_filas()
+        If txt_numActual.Text <> num_ParticipantesFinal.Value Then borra_filas_en_tablas()
+
+        matriz_grupos_sorteo = New Integer(,) {{0, 0, 0, 0, 0, 0},
+                                                {1, 0, 0, 0, 0, 0},
+                                                {2, 0, 0, 0, 0, 0},
+                                                {3, 0, 0, 0, 0, 0},
+                                                {2, 2, 0, 0, 0, 0},
+                                                {3, 2, 0, 0, 0, 0},
+                                                {3, 3, 0, 0, 0, 0},
+                                                {4, 3, 0, 0, 0, 0},
+                                                {4, 4, 0, 0, 0, 0},
+                                                {5, 4, 0, 0, 0, 0},
+                                                {5, 5, 0, 0, 0, 0},
+                                                {6, 5, 0, 0, 0, 0},
+                                                {6, 6, 0, 0, 0, 0},
+                                                {5, 4, 4, 0, 0, 0},
+                                                {5, 5, 4, 0, 0, 0},
+                                                {5, 5, 5, 0, 0, 0},
+                                                {6, 5, 5, 0, 0, 0},
+                                                {6, 6, 5, 0, 0, 0},
+                                                {6, 6, 6, 0, 0, 0},
+                                                {5, 5, 5, 4, 0, 0},
+                                                {5, 5, 5, 5, 0, 0},
+                                                {6, 5, 5, 5, 0, 0},
+                                                {6, 6, 5, 5, 0, 0},
+                                                {6, 6, 6, 5, 0, 0},
+                                                {6, 6, 6, 6, 0, 0},
+                                                {5, 5, 5, 5, 5, 0},
+                                                {6, 5, 5, 5, 5, 0},
+                                                {6, 6, 5, 5, 5, 0},
+                                                {6, 6, 6, 5, 5, 0},
+                                                {6, 6, 6, 6, 5, 0},
+                                                {6, 6, 6, 6, 6, 0},
+                                                {7, 6, 6, 6, 6, 0},
+                                                {7, 7, 6, 6, 6, 0},
+                                                {7, 7, 7, 6, 6, 0},
+                                                {7, 7, 7, 7, 6, 0},
+                                                {7, 7, 7, 7, 7, 0},
+                                                {6, 6, 6, 6, 6, 6},
+                                                {7, 6, 6, 6, 6, 6}}
 
 
 
-        'Inicializacion de tabla de grupos para realizar sorteo segun numero de competidores
-        Select Case participantes
-            Case 1
-                ParticipantesPorGrupo = New Integer() {1, 0, 0, 0, 0, 0}
-            Case 2
-                ParticipantesPorGrupo = New Integer() {2, 0, 0, 0, 0, 0}
-            Case 3
-                ParticipantesPorGrupo = New Integer() {3, 0, 0, 0, 0, 0}
-            Case 4
-                ParticipantesPorGrupo = New Integer() {2, 2, 0, 0, 0, 0}
-            Case 5
-                ParticipantesPorGrupo = New Integer() {3, 2, 0, 0, 0, 0}
-            Case 6
-                ParticipantesPorGrupo = New Integer() {3, 3, 0, 0, 0, 0}
-            Case 7
-                ParticipantesPorGrupo = New Integer() {4, 3, 0, 0, 0, 0}
-            Case 8
-                ParticipantesPorGrupo = New Integer() {4, 4, 0, 0, 0, 0}
-            Case 9
-                ParticipantesPorGrupo = New Integer() {5, 4, 0, 0, 0, 0}
-            Case 10
-                ParticipantesPorGrupo = New Integer() {5, 5, 0, 0, 0, 0}
-            Case 11
-                ParticipantesPorGrupo = New Integer() {6, 5, 0, 0, 0, 0}
-            Case 12
-                ParticipantesPorGrupo = New Integer() {6, 6, 0, 0, 0, 0}
-            Case 13
-                ParticipantesPorGrupo = New Integer() {5, 4, 4, 0, 0, 0}
-            Case 14
-                ParticipantesPorGrupo = New Integer() {5, 5, 4, 0, 0, 0}
-            Case 15
-                ParticipantesPorGrupo = New Integer() {5, 5, 5, 0, 0, 0}
-            Case 16
-                ParticipantesPorGrupo = New Integer() {6, 5, 5, 0, 0, 0}
-            Case 17
-                ParticipantesPorGrupo = New Integer() {6, 6, 5, 0, 0, 0}
-            Case 18
-                ParticipantesPorGrupo = New Integer() {6, 6, 6, 0, 0, 0}
-            Case 19
-                ParticipantesPorGrupo = New Integer() {5, 5, 5, 4, 0, 0}
-            Case 20
-                ParticipantesPorGrupo = New Integer() {5, 5, 5, 5, 0, 0}
-            Case 21
-                ParticipantesPorGrupo = New Integer() {6, 5, 5, 5, 0, 0}
-            Case 22
-                ParticipantesPorGrupo = New Integer() {6, 6, 5, 5, 0, 0}
-            Case 23
-                ParticipantesPorGrupo = New Integer() {6, 6, 6, 5, 0, 0}
-            Case 24
-                ParticipantesPorGrupo = New Integer() {6, 6, 6, 6, 0, 0}
-            Case 25
-                ParticipantesPorGrupo = New Integer() {5, 5, 5, 5, 5, 0}
-            Case 26
-                ParticipantesPorGrupo = New Integer() {6, 5, 5, 5, 5, 0}
-            Case 27
-                ParticipantesPorGrupo = New Integer() {6, 6, 5, 5, 5, 0}
-            Case 28
-                ParticipantesPorGrupo = New Integer() {6, 6, 6, 5, 5, 0}
-            Case 29
-                ParticipantesPorGrupo = New Integer() {6, 6, 6, 6, 5, 0}
-            Case 30
-                ParticipantesPorGrupo = New Integer() {6, 6, 6, 6, 6, 0}
-            Case 31
-                ParticipantesPorGrupo = New Integer() {7, 6, 6, 6, 6, 0}
-            Case 32
-                ParticipantesPorGrupo = New Integer() {7, 7, 6, 6, 6, 0}
-            Case 33
-                ParticipantesPorGrupo = New Integer() {7, 7, 7, 6, 6, 0}
-            Case 34
-                ParticipantesPorGrupo = New Integer() {7, 7, 7, 7, 6, 0}
-            Case 35
-                ParticipantesPorGrupo = New Integer() {7, 7, 7, 7, 7, 0}
-            Case 36
-                ParticipantesPorGrupo = New Integer() {6, 6, 6, 6, 6, 6}
-            Case 37
-                ParticipantesPorGrupo = New Integer() {7, 6, 6, 6, 6, 6}
-        End Select
+        posiciones_acumuladas_de_grupos_ya_sorteados = 0
 
-        acumulado = 0
-        For loop_grupo = 5 To 0 Step -1 'Rotacion por todos los grupos de la matriz
+        For loop_grupos_de_sorteo_posibles = 5 To 0 Step -1 'Rotacion por todos los grupos de la matriz
             'Depndiendo del grupo se le asigna un color 
-            Select Case loop_grupo
+            Select Case loop_grupos_de_sorteo_posibles
                 Case 0
-                    colorin = Color.Coral
+                    color_de_fondo = Color.Coral
                 Case 1
-                    colorin = Color.WhiteSmoke
+                    color_de_fondo = Color.WhiteSmoke
                 Case 2
-                    colorin = Color.Violet
+                    color_de_fondo = Color.Violet
                 Case 3
-                    colorin = Color.Yellow
+                    color_de_fondo = Color.Yellow
                 Case 4
-                    colorin = Color.Turquoise
+                    color_de_fondo = Color.Turquoise
                 Case 5
-                    colorin = Color.Tomato
+                    color_de_fondo = Color.Tomato
             End Select
-            If ParticipantesPorGrupo(loop_grupo) > 0 Then 'Si el grupo de la matriz es cero se salta
-                For fila = 1 To ParticipantesPorGrupo(loop_grupo) 'Rotacion por cada un ade las filas dentro de cada grupo
+            If matriz_grupos_sorteo(numero_participantes_en_sorteo, loop_grupos_de_sorteo_posibles) > 0 Then 'Si el grupo de la matriz es cero se salta
+                For filas_en_tabla = 1 To matriz_grupos_sorteo(numero_participantes_en_sorteo, loop_grupos_de_sorteo_posibles) 'Rotacion por cada un ade las filas_en_tablas dentro de cada grupo
 
-                    If fila = 0 Then
-                        nuevapos = Int(ParticipantesPorGrupo(loop_grupo) * Rnd() + 1) + acumulado
+                    If filas_en_tabla = 0 Then
+                        nuevapos = Int(matriz_grupos_sorteo(numero_participantes_en_sorteo, loop_grupos_de_sorteo_posibles) * Rnd() + 1) + posiciones_acumuladas_de_grupos_ya_sorteados
                     Else
-                        difieren = False
-                        Do Until difieren
-                            difieren = True
-                            nuevapos = Int(ParticipantesPorGrupo(loop_grupo) * Rnd() + 1) + acumulado
-                            For x = fila To 1 Step -1
-                                If DataGridViewTable.Rows(participantes - (acumulado + x)).Cells(4).Value = nuevapos Then difieren = False
+                        diferentes_posActual_Anteriores = False
+                        Do Until diferentes_posActual_Anteriores
+                            diferentes_posActual_Anteriores = True
+                            nuevapos = Int(matriz_grupos_sorteo(numero_participantes_en_sorteo, loop_grupos_de_sorteo_posibles) * Rnd() + 1) + posiciones_acumuladas_de_grupos_ya_sorteados
+                            For x = filas_en_tabla To 1 Step -1
+                                If DataGridViewTable.Rows(numero_participantes_en_sorteo - (posiciones_acumuladas_de_grupos_ya_sorteados + x)).Cells(4).Value = nuevapos Then diferentes_posActual_Anteriores = False
                             Next
                         Loop
                     End If
-                    DataGridViewTable.Rows(participantes - (acumulado + fila)).Cells(4).Value = nuevapos
+                    DataGridViewTable.Rows(numero_participantes_en_sorteo - (posiciones_acumuladas_de_grupos_ya_sorteados + filas_en_tabla)).Cells(4).Value = nuevapos
 
                     'solo colorear
-                    For columna = 0 To 4 ' rotacion por dentro de cada una de las celdas del la fila
-                        DataGridViewTable.Rows(participantes - (acumulado + fila)).Cells(columna).Style.BackColor = colorin
+                    For celdas_en_fila = 0 To 4 ' rotacion por dentro de cada una de las celdas del la filas_en_tabla
+                        DataGridViewTable.Rows(numero_participantes_en_sorteo - (posiciones_acumuladas_de_grupos_ya_sorteados + filas_en_tabla)).Cells(celdas_en_fila).Style.BackColor = color_de_fondo
                     Next
 
 
                 Next
-                acumulado += ParticipantesPorGrupo(loop_grupo) 'Se suma el valor de participantes del grupo recien terminado al acumulado de participantes
+                posiciones_acumuladas_de_grupos_ya_sorteados += matriz_grupos_sorteo(numero_participantes_en_sorteo, loop_grupos_de_sorteo_posibles) 'Se suma el valor de numero_participantes_en_sorteo del grupo recien terminado al posiciones_acumuladas_de_grupos_ya_sorteados de participantes
             End If
         Next
 
     End Sub
 
-    Sub borra_filas()
-        Dim filaInicio As Integer
-        Dim FilaFin As Integer
+    Sub borra_filas_en_tablas()
+        Dim filas_en_tablaInicio As Integer
+        Dim filas_en_tablaFin As Integer
 
-        filaInicio = txt_numActual.Text
-        FilaFin = num_ParticipantesFinal.Value + 1
+        'filas_en_tablaInicio = txt_numActual.Text
+        filas_en_tablaInicio = DataGridViewTable.Rows.Count - 1
+        filas_en_tablaFin = num_ParticipantesFinal.Value + 1
 
-        For x = filaInicio To FilaFin Step -1
-            Dim deleterow As DataRow
+        For x = filas_en_tablaInicio To filas_en_tablaFin Step -1
 
             DataGridViewTable.Rows.Remove(DataGridViewTable.Rows(x - 1))
         Next
