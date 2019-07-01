@@ -161,6 +161,9 @@ Public Class RollArt_SQLITE
         Dim colorin As Color
         Dim difieren As Boolean
 
+        If txt_numActual.Text <> num_ParticipantesFinal.Value Then borra_filas()
+
+
 
         'Inicializacion de tabla de grupos para realizar sorteo segun numero de competidores
         Select Case participantes
@@ -241,7 +244,7 @@ Public Class RollArt_SQLITE
         End Select
 
         acumulado = 0
-        For loop_grupo = 0 To 5 'Rotacion por todos los grupos de la matriz
+        For loop_grupo = 5 To 0 Step -1 'Rotacion por todos los grupos de la matriz
             'Depndiendo del grupo se le asigna un color 
             Select Case loop_grupo
                 Case 0
@@ -258,7 +261,7 @@ Public Class RollArt_SQLITE
                     colorin = Color.Tomato
             End Select
             If ParticipantesPorGrupo(loop_grupo) > 0 Then 'Si el grupo de la matriz es cero se salta
-                For fila = 0 To ParticipantesPorGrupo(loop_grupo) - 1 'Rotacion por cada un ade las filas dentro de cada grupo
+                For fila = 1 To ParticipantesPorGrupo(loop_grupo) 'Rotacion por cada un ade las filas dentro de cada grupo
 
                     If fila = 0 Then
                         nuevapos = Int(ParticipantesPorGrupo(loop_grupo) * Rnd() + 1) + acumulado
@@ -267,16 +270,16 @@ Public Class RollArt_SQLITE
                         Do Until difieren
                             difieren = True
                             nuevapos = Int(ParticipantesPorGrupo(loop_grupo) * Rnd() + 1) + acumulado
-                            For x = fila - 1 To 0 Step -1
-                                If DataGridViewTable.Rows(acumulado + x).Cells(4).Value = nuevapos Then difieren = False
+                            For x = fila To 1 Step -1
+                                If DataGridViewTable.Rows(participantes - (acumulado + x)).Cells(4).Value = nuevapos Then difieren = False
                             Next
                         Loop
                     End If
-                    DataGridViewTable.Rows(acumulado + fila).Cells(4).Value = nuevapos
+                    DataGridViewTable.Rows(participantes - (acumulado + fila)).Cells(4).Value = nuevapos
 
                     'solo colorear
                     For columna = 0 To 4 ' rotacion por dentro de cada una de las celdas del la fila
-                        DataGridViewTable.Rows(acumulado + fila).Cells(columna).Style.BackColor = colorin
+                        DataGridViewTable.Rows(participantes - (acumulado + fila)).Cells(columna).Style.BackColor = colorin
                     Next
 
 
@@ -287,7 +290,20 @@ Public Class RollArt_SQLITE
 
     End Sub
 
+    Sub borra_filas()
+        Dim filaInicio As Integer
+        Dim FilaFin As Integer
 
+        filaInicio = txt_numActual.Text
+        FilaFin = num_ParticipantesFinal.Value + 1
+
+        For x = filaInicio To FilaFin Step -1
+            Dim deleterow As DataRow
+
+            DataGridViewTable.Rows.Remove(DataGridViewTable.Rows(x - 1))
+        Next
+
+    End Sub
 
 
 
