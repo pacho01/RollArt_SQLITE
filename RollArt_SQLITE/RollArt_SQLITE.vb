@@ -268,6 +268,110 @@ Public Class RollArt_SQLITE
     End Sub
 
 
+    Private Sub ButtonSave_Click(sender As Object, e As EventArgs) Handles ButtonSave.Click
+        'If TextBoxID.Text = "" And TextBoxName.Text = "" And TextBoxCity.Text = "" And TextBoxMobilePhone.Text = "" And TextBoxEmail.Text = "" And ComboBoxGender.Text = "- choose gender -" Then
+        '    MessageBox.Show("All data has not been filled, please fill in", "Failed")
+        '    Return
+        'End If
+
+        'If TextBoxID.Text = "" Then
+        '    MessageBox.Show("ID has not been filled, please fill in ID", "Failed")
+        '    Return
+        'End If
+
+        'If TextBoxName.Text = "" Then
+        '    MessageBox.Show("Name has not been filled, please fill in Name", "Failed")
+        '    Return
+        'End If
+
+        'If TextBoxCity.Text = "" Then
+        '    MessageBox.Show("City has not been filled, please fill in City", "Failed")
+        '    Return
+        'End If
+
+        'If TextBoxMobilePhone.Text = "" Then
+        '    MessageBox.Show("Mobile Phone has not been filled, please fill in Mobile Phone", "Failed")
+        '    Return
+        'End If
+
+        'If TextBoxEmail.Text = "" Then
+        '    MessageBox.Show("Email has not been filled, please fill in Email", "Failed")
+        '    Return
+        'End If
+
+        'If ComboBoxGender.Text = "- choose gender -" Then
+        '    MessageBox.Show("Gender not selected, please select Gender", "Failed")
+        '    Return
+        'End If
+
+
+
+
+
+        '*******************************************************************************
+        Exit Sub
+        '*******************************************************************************
+
+
+
+
+        Dim SQLiteCon As New SQLiteConnection(DB_Path)
+
+        Try
+            SQLiteCon.Open()
+        Catch ex As Exception
+            SQLiteCon.Dispose()
+            SQLiteCon = Nothing
+            MsgBox(ex.Message)
+            Exit Sub
+        End Try
+
+        Try
+            ExecuteNonQuery("insert into " & TableName & " (ID,Name,Mobile_Phone,Email,City,Gender) values ('" & TextBoxID.Text & "','" & TextBoxName.Text _
+                            & "','" & TextBoxMobilePhone.Text & "','" & TextBoxEmail.Text & "','" & TextBoxCity.Text & "','" & ComboBoxGender.Text & "')", SQLiteCon)
+            MsgBox("Insert Data successfully")
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+        SQLiteCon.Close()
+        SQLiteCon.Dispose()
+        SQLiteCon = Nothing
+
+        ButtonRefresh_Click(sender, e)
+        ButtonClear_Click(sender, e)
+    End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -312,68 +416,7 @@ Public Class RollArt_SQLITE
         End If
     End Sub
 
-    Private Sub ButtonSave_Click(sender As Object, e As EventArgs) Handles ButtonSave.Click
-        If TextBoxID.Text = "" And TextBoxName.Text = "" And TextBoxCity.Text = "" And TextBoxMobilePhone.Text = "" And TextBoxEmail.Text = "" And ComboBoxGender.Text = "- choose gender -" Then
-            MessageBox.Show("All data has not been filled, please fill in", "Failed")
-            Return
-        End If
 
-        If TextBoxID.Text = "" Then
-            MessageBox.Show("ID has not been filled, please fill in ID", "Failed")
-            Return
-        End If
-
-        If TextBoxName.Text = "" Then
-            MessageBox.Show("Name has not been filled, please fill in Name", "Failed")
-            Return
-        End If
-
-        If TextBoxCity.Text = "" Then
-            MessageBox.Show("City has not been filled, please fill in City", "Failed")
-            Return
-        End If
-
-        If TextBoxMobilePhone.Text = "" Then
-            MessageBox.Show("Mobile Phone has not been filled, please fill in Mobile Phone", "Failed")
-            Return
-        End If
-
-        If TextBoxEmail.Text = "" Then
-            MessageBox.Show("Email has not been filled, please fill in Email", "Failed")
-            Return
-        End If
-
-        If ComboBoxGender.Text = "- choose gender -" Then
-            MessageBox.Show("Gender not selected, please select Gender", "Failed")
-            Return
-        End If
-
-        Dim SQLiteCon As New SQLiteConnection(DB_Path)
-
-        Try
-            SQLiteCon.Open()
-        Catch ex As Exception
-            SQLiteCon.Dispose()
-            SQLiteCon = Nothing
-            MsgBox(ex.Message)
-            Exit Sub
-        End Try
-
-        Try
-            ExecuteNonQuery("insert into " & TableName & " (ID,Name,Mobile_Phone,Email,City,Gender) values ('" & TextBoxID.Text & "','" & TextBoxName.Text _
-                            & "','" & TextBoxMobilePhone.Text & "','" & TextBoxEmail.Text & "','" & TextBoxCity.Text & "','" & ComboBoxGender.Text & "')", SQLiteCon)
-            MsgBox("Insert Data successfully")
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
-
-        SQLiteCon.Close()
-        SQLiteCon.Dispose()
-        SQLiteCon = Nothing
-
-        ButtonRefresh_Click(sender, e)
-        ButtonClear_Click(sender, e)
-    End Sub
 
     Private Sub ButtonRefresh_Click(sender As Object, e As EventArgs) Handles ButtonRefresh.Click
         Dim SQLiteCon As New SQLiteConnection(DB_Path)
