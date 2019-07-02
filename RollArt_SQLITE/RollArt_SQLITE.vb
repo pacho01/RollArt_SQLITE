@@ -4,7 +4,7 @@ Imports System.Runtime.InteropServices
 
 Public Class RollArt_SQLITE
     Dim DB_Path As String
-
+    Dim id_gara As Integer
     Dim TableName As String = "Athletes"
     '*************************************************************************
 
@@ -101,6 +101,8 @@ Public Class RollArt_SQLITE
     Sub leer_posiciones_participantes()
 
         Dim SQLiteCon As New SQLiteConnection(DB_Path)
+
+
         Try
             SQLiteCon.Open()
         Catch ex As Exception
@@ -115,10 +117,10 @@ Public Class RollArt_SQLITE
         Try
             'Para saber de que evento se leera la lista de numero_participantes_en_sorteo consultamos el TAG del nodo
             'donde se ha depositado el id del gara al cargar los eventos 
-            Dim id_gara As Integer
+
             id_gara = treeEvents.SelectedNode.Tag
             'LoadDB("select NumStartingList as Sal, B.Name as nombre , A.ID_Atleta, Societa, Country, B.ID_Specialita, Position from Participants as A, Athletes as B, GaraFinal as G where A.ID_GaraParams = " & id_gara & " AND  A.ID_SEGMENT = G.ID_SEGMENT AND A.ID_GaraParams = G.ID_GaraParams AND A.ID_SEGMENT = 1 AND B.ID_Atleta = G.ID_Atleta AND A.ID_Atleta = B.ID_Atleta ORDER BY Position", TableDB, SQLiteCon)
-            LoadDB("select NumStartingList as Sal, B.Name as NOMBRE , Societa as CLUB, Country as PAIS,  Position as Pos from Participants as A, Athletes as B, GaraFinal as G where A.ID_GaraParams = " & id_gara & " AND  A.ID_SEGMENT = G.ID_SEGMENT AND A.ID_GaraParams = G.ID_GaraParams AND A.ID_SEGMENT = 1 AND B.ID_Atleta = G.ID_Atleta AND A.ID_Atleta = B.ID_Atleta ORDER BY Position", TableDB, SQLiteCon)
+            LoadDB("select NumStartingList as Sal, B.Name as NOMBRE , Societa as CLUB, Country as PAIS,  Position as Pos, A.ID_Atleta as ID from Participants as A, Athletes as B, GaraFinal as G where A.ID_GaraParams = " & id_gara & " AND  A.ID_SEGMENT = G.ID_SEGMENT AND A.ID_GaraParams = G.ID_GaraParams AND A.ID_SEGMENT = 1 AND B.ID_Atleta = G.ID_Atleta AND A.ID_Atleta = B.ID_Atleta ORDER BY Position", TableDB, SQLiteCon)
             'Contamos el numero de numero_participantes_en_sorteo y se muestra en el cuadro de texto y el selector de numeros
             txt_numActual.Text = TableDB.Rows.Count
             num_ParticipantesFinal.Value = TableDB.Rows.Count
@@ -309,7 +311,7 @@ Public Class RollArt_SQLITE
 
 
         '*******************************************************************************
-        Exit Sub
+        'Exit Sub
         '*******************************************************************************
 
 
@@ -327,8 +329,18 @@ Public Class RollArt_SQLITE
         End Try
 
         Try
-            ExecuteNonQuery("insert into " & TableName & " (ID,Name,Mobile_Phone,Email,City,Gender) values ('" & TextBoxID.Text & "','" & TextBoxName.Text _
-                            & "','" & TextBoxMobilePhone.Text & "','" & TextBoxEmail.Text & "','" & TextBoxCity.Text & "','" & ComboBoxGender.Text & "')", SQLiteCon)
+            Dim sql_comando As String
+            'EjecutaSQL_SinRetorno("insert into " & TableName & " (ID,Name,Mobile_Phone,Email,City,Gender) values ('" & TextBoxID.Text & "','" & TextBoxName.Text _
+            '                & "','" & TextBoxMobilePhone.Text & "','" & TextBoxEmail.Text & "','" & TextBoxCity.Text & "','" & ComboBoxGender.Text & "')", SQLiteCon)
+            EjecutaSQL_SinRetorno("DELETE FROM Participants WHERE ID_GaraParams = " & id_gara & " AND ID_Segment = 2", SQLiteCon)
+
+
+            For x_loop = 0 To DataGridViewTable.Rows.Count - 2
+                sql_comando = "INSERT INTO Participants VALUES (" & id_gara & ", 2," & DataGridViewTable.Rows(x_loop).Cells(5).Value & "," & DataGridViewTable.Rows(x_loop).Cells(4).Value & ")"
+                EjecutaSQL_SinRetorno(sql_comando, SQLiteCon)
+            Next
+            EjecutaSQL_SinRetorno("UPDATE GaraParams SET Partecipants= " & DataGridViewTable.Rows.Count - 2 & " WHERE ID_GaraParams = " & id_gara, SQLiteCon)
+
             MsgBox("Insert Data successfully")
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -338,8 +350,8 @@ Public Class RollArt_SQLITE
         SQLiteCon.Dispose()
         SQLiteCon = Nothing
 
-        ButtonRefresh_Click(sender, e)
-        ButtonClear_Click(sender, e)
+        'ButtonRefresh_Click(sender, e)
+        'ButtonClear_Click(sender, e)
     End Sub
 
 
@@ -433,7 +445,7 @@ Public Class RollArt_SQLITE
         Dim TableDB As New DataTable
 
         Try
-            LoadDB("select*from " & TableName & " order by Name", TableDB, SQLiteCon)
+            LoadDB("Select*from " & TableName & " order by Name", TableDB, SQLiteCon)
             DataGridViewTable.DataSource = Nothing
             DataGridViewTable.DataSource = TableDB
             DataGridViewTable.Columns("Mobile_Phone").HeaderText = "Mobile Phone"
@@ -462,7 +474,7 @@ Public Class RollArt_SQLITE
         End Try
 
         If DataGridViewTable.RowCount = 0 Then
-            MsgBox("Cannot delete, table data is empty", MsgBoxStyle.Critical, "Failed")
+            MsgBox("Cannot delete, table data Is empty", MsgBoxStyle.Critical, "Failed")
             Return
         End If
 
@@ -475,7 +487,7 @@ Public Class RollArt_SQLITE
 
         Try
             If AllCellsSelected(DataGridViewTable) = True Then
-                ExecuteNonQuery("delete from " & TableName & "", SQLiteCon)
+                EjecutaSQL_SinRetorno("delete from " & TableName & "", SQLiteCon)
                 SQLiteCon.Close()
                 SQLiteCon.Dispose()
                 SQLiteCon = Nothing
@@ -486,8 +498,9 @@ Public Class RollArt_SQLITE
 
             For Each row As DataGridViewRow In DataGridViewTable.SelectedRows
                 If row.Selected = True Then
-                    ExecuteNonQuery("delete from " & TableName & " where ID='" & row.DataBoundItem(0).ToString & "'", SQLiteCon)
+                    EjecutaSQL_SinRetorno("delete from " & TableName & " where ID='" & row.DataBoundItem(0).ToString & "'", SQLiteCon)
                 End If
+
             Next
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -538,7 +551,7 @@ Public Class RollArt_SQLITE
         End Try
 
         Try
-            ExecuteNonQuery("update " & TableName & " set Name='" & TextBoxName.Text & "',Mobile_Phone='" & TextBoxMobilePhone.Text _
+            EjecutaSQL_SinRetorno("update " & TableName & " set Name='" & TextBoxName.Text & "',Mobile_Phone='" & TextBoxMobilePhone.Text _
                             & "',Email='" & TextBoxEmail.Text & "',City='" & TextBoxCity.Text & "',Gender='" & ComboBoxGender.Text & "' where ID='" & TextBoxID.Text & "'", SQLiteCon)
             MsgBox("Update successfully")
         Catch ex As Exception
@@ -757,7 +770,7 @@ Public Class RollArt_SQLITE
     End Sub
 
     'Sub to write to the database
-    Private Sub ExecuteNonQuery(ByVal query As String, ByVal cn As SQLiteConnection)
+    Private Sub EjecutaSQL_SinRetorno(ByVal query As String, ByVal cn As SQLiteConnection)
         Dim SQLiteCM As New SQLiteCommand(query, cn)
         SQLiteCM.ExecuteNonQuery()
         SQLiteCM.Dispose()
