@@ -339,7 +339,8 @@ Public Class RollArt_SQLITE
                 sql_comando = "INSERT INTO Participants VALUES (" & id_gara & ", 2," & DataGridViewTable.Rows(x_loop).Cells(5).Value & "," & DataGridViewTable.Rows(x_loop).Cells(4).Value & ")"
                 EjecutaSQL_SinRetorno(sql_comando, SQLiteCon)
             Next
-            EjecutaSQL_SinRetorno("UPDATE GaraParams SET Partecipants= " & DataGridViewTable.Rows.Count - 2 & " WHERE ID_GaraParams = " & id_gara, SQLiteCon)
+            sql_comando = "UPDATE GaraParams SET Partecipants= " & DataGridViewTable.Rows.Count - 1 & " WHERE ID_Segment = 2 AND ID_GaraParams = " & id_gara
+            EjecutaSQL_SinRetorno(sql_comando, SQLiteCon)
 
             MsgBox("Insert Data successfully")
         Catch ex As Exception
