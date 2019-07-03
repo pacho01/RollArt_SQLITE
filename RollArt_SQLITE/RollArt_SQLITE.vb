@@ -207,50 +207,63 @@ Public Class RollArt_SQLITE
 
 
         posiciones_acumuladas_de_grupos_ya_sorteados = 0
-
-        For loop_grupos_de_sorteo_posibles = 5 To 0 Step -1 'Rotacion por todos los grupos de la matriz
-            'Depndiendo del grupo se le asigna un color 
-            Select Case loop_grupos_de_sorteo_posibles
-                Case 0
-                    color_de_fondo = Color.Coral
+        If numero_participantes_en_sorteo < 4 Then
+            Select Case num_ParticipantesFinal.Value
                 Case 1
-                    color_de_fondo = Color.WhiteSmoke
+                    DataGridViewTable.Rows(0).Cells(4).Value = 1
                 Case 2
-                    color_de_fondo = Color.Violet
+                    DataGridViewTable.Rows(0).Cells(4).Value = 2
+                    DataGridViewTable.Rows(1).Cells(4).Value = 1
                 Case 3
-                    color_de_fondo = Color.Yellow
-                Case 4
-                    color_de_fondo = Color.Turquoise
-                Case 5
-                    color_de_fondo = Color.Tomato
+                    DataGridViewTable.Rows(0).Cells(4).Value = 3
+                    DataGridViewTable.Rows(1).Cells(4).Value = 2
+                    DataGridViewTable.Rows(2).Cells(4).Value = 1
             End Select
-            If matriz_grupos_sorteo(numero_participantes_en_sorteo, loop_grupos_de_sorteo_posibles) > 0 Then 'Si el grupo de la matriz es cero se salta
-                For filas_en_tabla = 1 To matriz_grupos_sorteo(numero_participantes_en_sorteo, loop_grupos_de_sorteo_posibles) 'Rotacion por cada un ade las filas_en_tablas dentro de cada grupo
+        Else
+            For loop_grupos_de_sorteo_posibles = 5 To 0 Step -1 'Rotacion por todos los grupos de la matriz
+                'Depndiendo del grupo se le asigna un color 
+                Select Case loop_grupos_de_sorteo_posibles
+                    Case 0
+                        color_de_fondo = Color.Coral
+                    Case 1
+                        color_de_fondo = Color.WhiteSmoke
+                    Case 2
+                        color_de_fondo = Color.Violet
+                    Case 3
+                        color_de_fondo = Color.Yellow
+                    Case 4
+                        color_de_fondo = Color.Turquoise
+                    Case 5
+                        color_de_fondo = Color.Tomato
+                End Select
+                If matriz_grupos_sorteo(numero_participantes_en_sorteo, loop_grupos_de_sorteo_posibles) > 0 Then 'Si el grupo de la matriz es cero se salta
+                    For filas_en_tabla = 1 To matriz_grupos_sorteo(numero_participantes_en_sorteo, loop_grupos_de_sorteo_posibles) 'Rotacion por cada un ade las filas_en_tablas dentro de cada grupo
 
-                    If filas_en_tabla = 0 Then
-                        nuevapos = Int(matriz_grupos_sorteo(numero_participantes_en_sorteo, loop_grupos_de_sorteo_posibles) * Rnd() + 1) + posiciones_acumuladas_de_grupos_ya_sorteados
-                    Else
-                        diferentes_posActual_Anteriores = False
-                        Do Until diferentes_posActual_Anteriores
-                            diferentes_posActual_Anteriores = True
+                        If filas_en_tabla = 0 Then
                             nuevapos = Int(matriz_grupos_sorteo(numero_participantes_en_sorteo, loop_grupos_de_sorteo_posibles) * Rnd() + 1) + posiciones_acumuladas_de_grupos_ya_sorteados
-                            For x = filas_en_tabla To 1 Step -1
-                                If DataGridViewTable.Rows(numero_participantes_en_sorteo - (posiciones_acumuladas_de_grupos_ya_sorteados + x)).Cells(4).Value = nuevapos Then diferentes_posActual_Anteriores = False
-                            Next
-                        Loop
-                    End If
-                    DataGridViewTable.Rows(numero_participantes_en_sorteo - (posiciones_acumuladas_de_grupos_ya_sorteados + filas_en_tabla)).Cells(4).Value = nuevapos
+                        Else
+                            diferentes_posActual_Anteriores = False
+                            Do Until diferentes_posActual_Anteriores
+                                diferentes_posActual_Anteriores = True
+                                nuevapos = Int(matriz_grupos_sorteo(numero_participantes_en_sorteo, loop_grupos_de_sorteo_posibles) * Rnd() + 1) + posiciones_acumuladas_de_grupos_ya_sorteados
+                                For x = filas_en_tabla To 1 Step -1
+                                    If DataGridViewTable.Rows(numero_participantes_en_sorteo - (posiciones_acumuladas_de_grupos_ya_sorteados + x)).Cells(4).Value = nuevapos Then diferentes_posActual_Anteriores = False
+                                Next
+                            Loop
+                        End If
+                        DataGridViewTable.Rows(numero_participantes_en_sorteo - (posiciones_acumuladas_de_grupos_ya_sorteados + filas_en_tabla)).Cells(4).Value = nuevapos
 
-                    'solo colorear
-                    For celdas_en_fila = 0 To 4 ' rotacion por dentro de cada una de las celdas del la filas_en_tabla
-                        DataGridViewTable.Rows(numero_participantes_en_sorteo - (posiciones_acumuladas_de_grupos_ya_sorteados + filas_en_tabla)).Cells(celdas_en_fila).Style.BackColor = color_de_fondo
+                        'solo colorear
+                        For celdas_en_fila = 0 To 4 ' rotacion por dentro de cada una de las celdas del la filas_en_tabla
+                            DataGridViewTable.Rows(numero_participantes_en_sorteo - (posiciones_acumuladas_de_grupos_ya_sorteados + filas_en_tabla)).Cells(celdas_en_fila).Style.BackColor = color_de_fondo
+                        Next
+
+
                     Next
-
-
-                Next
-                posiciones_acumuladas_de_grupos_ya_sorteados += matriz_grupos_sorteo(numero_participantes_en_sorteo, loop_grupos_de_sorteo_posibles) 'Se suma el valor de numero_participantes_en_sorteo del grupo recien terminado al posiciones_acumuladas_de_grupos_ya_sorteados de participantes
-            End If
-        Next
+                    posiciones_acumuladas_de_grupos_ya_sorteados += matriz_grupos_sorteo(numero_participantes_en_sorteo, loop_grupos_de_sorteo_posibles) 'Se suma el valor de numero_participantes_en_sorteo del grupo recien terminado al posiciones_acumuladas_de_grupos_ya_sorteados de participantes
+                End If
+            Next
+        End If
 
     End Sub
 
