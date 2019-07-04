@@ -117,7 +117,17 @@ Public Class RollArt_SQLITE
             LoadDB("select NumStartingList as Sal, B.Name as NOMBRE , Societa as CLUB, Country as PAIS,  Position as Pos, A.ID_Atleta as ID from Participants as A, Athletes as B, GaraFinal as G where A.ID_GaraParams = " & id_gara & " AND  A.ID_SEGMENT = G.ID_SEGMENT AND A.ID_GaraParams = G.ID_GaraParams AND A.ID_SEGMENT = 1 AND B.ID_Atleta = G.ID_Atleta AND A.ID_Atleta = B.ID_Atleta ORDER BY Position", TableDB, SQLiteCon)
             'Contamos el numero de numero_participantes_en_sorteo y se muestra en el cuadro de texto y el selector de numeros
             txt_numActual.Text = TableDB.Rows.Count
-            num_ParticipantesFinal.Value = TableDB.Rows.Count
+
+            If TableDB.Rows.Count < 38 Then
+                num_ParticipantesFinal.Maximum = TableDB.Rows.Count
+                num_ParticipantesFinal.Value = TableDB.Rows.Count
+            Else
+                num_ParticipantesFinal.Maximum = 37
+                num_ParticipantesFinal.Value = 37
+            End If
+
+
+
             'Cargamos TableDB en el gridview y asignamos el ancho de las celdas
             DataGridViewTable.DataSource = Nothing
             DataGridViewTable.DataSource = TableDB
@@ -268,7 +278,7 @@ Public Class RollArt_SQLITE
         'filas_en_tablaInicio = txt_numActual.Text
         filas_en_tablaInicio = DataGridViewTable.Rows.Count - 1
         filas_en_tablaFin = num_ParticipantesFinal.Value + 1
-
+        num_ParticipantesFinal.Maximum = num_ParticipantesFinal.Value
         For x = filas_en_tablaInicio To filas_en_tablaFin Step -1
 
             DataGridViewTable.Rows.Remove(DataGridViewTable.Rows(x - 1))
@@ -362,19 +372,10 @@ Public Class RollArt_SQLITE
         'ButtonClear_Click(sender, e)
     End Sub
 
+    Private Sub RollArt_SQLITE_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Me.Width = 1500
 
-
-
-
-
-
-
-
-
-
-
-
-
+    End Sub
 
     Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
         'ButtonDelete_Click(sender, e)
