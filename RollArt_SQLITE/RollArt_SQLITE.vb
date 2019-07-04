@@ -377,6 +377,10 @@ Public Class RollArt_SQLITE
 
     End Sub
 
+    Private Sub DataGridViewTable_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewTable.CellContentClick
+
+    End Sub
+
     Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
         'ButtonDelete_Click(sender, e)
     End Sub

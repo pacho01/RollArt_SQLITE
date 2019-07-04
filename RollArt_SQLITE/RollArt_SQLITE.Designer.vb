@@ -55,6 +55,7 @@ Partial Class RollArt_SQLITE
         Me.DataGridViewTable.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DataGridViewTable.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.DataGridViewTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewTable.ContextMenuStrip = Me.ContextMenuStripEditor
         Me.DataGridViewTable.Location = New System.Drawing.Point(106, 271)
@@ -62,7 +63,7 @@ Partial Class RollArt_SQLITE
         Me.DataGridViewTable.Name = "DataGridViewTable"
         Me.DataGridViewTable.ReadOnly = True
         Me.DataGridViewTable.RowTemplate.Height = 31
-        Me.DataGridViewTable.Size = New System.Drawing.Size(653, 199)
+        Me.DataGridViewTable.Size = New System.Drawing.Size(733, 199)
         Me.DataGridViewTable.TabIndex = 20
         '
         'ContextMenuStripEditor
@@ -102,7 +103,7 @@ Partial Class RollArt_SQLITE
         Me.Panel1.Controls.Add(Me.treeEvents)
         Me.Panel1.Location = New System.Drawing.Point(106, 9)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(654, 257)
+        Me.Panel1.Size = New System.Drawing.Size(734, 257)
         Me.Panel1.TabIndex = 26
         '
         'Label7
@@ -128,7 +129,7 @@ Partial Class RollArt_SQLITE
         Me.treeEvents.Name = "treeEvents"
         Me.treeEvents.SelectedImageIndex = 1
         Me.treeEvents.ShowPlusMinus = False
-        Me.treeEvents.Size = New System.Drawing.Size(570, 250)
+        Me.treeEvents.Size = New System.Drawing.Size(650, 250)
         Me.treeEvents.TabIndex = 0
         '
         'ImageList1
@@ -177,7 +178,7 @@ Partial Class RollArt_SQLITE
         Me.btn_ver_participantes.Name = "btn_ver_participantes"
         Me.btn_ver_participantes.Size = New System.Drawing.Size(76, 50)
         Me.btn_ver_participantes.TabIndex = 29
-        Me.btn_ver_participantes.Text = "Ver Participantes"
+        Me.btn_ver_participantes.Text = "Recarga TABLA"
         Me.btn_ver_participantes.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.btn_ver_participantes.UseVisualStyleBackColor = True
         '
@@ -189,7 +190,7 @@ Partial Class RollArt_SQLITE
         Me.btn_OpenDB.Name = "btn_OpenDB"
         Me.btn_OpenDB.Size = New System.Drawing.Size(76, 50)
         Me.btn_OpenDB.TabIndex = 28
-        Me.btn_OpenDB.Text = "Open DB"
+        Me.btn_OpenDB.Text = "Abrir BD"
         Me.btn_OpenDB.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.btn_OpenDB.UseVisualStyleBackColor = True
         '
@@ -209,30 +210,34 @@ Partial Class RollArt_SQLITE
         'Label8
         '
         Me.Label8.Font = New System.Drawing.Font("Calibri", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(1, 310)
+        Me.Label8.Location = New System.Drawing.Point(1, 302)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(93, 57)
+        Me.Label8.Size = New System.Drawing.Size(100, 65)
         Me.Label8.TabIndex = 32
-        Me.Label8.Text = "Numero particiantes para ronda 2"
+        Me.Label8.Text = "Numero particiantes para 2ª RONDA"
         Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label9
         '
         Me.Label9.Font = New System.Drawing.Font("Calibri", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(1, 228)
+        Me.Label9.Location = New System.Drawing.Point(1, 219)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(93, 48)
+        Me.Label9.Size = New System.Drawing.Size(93, 57)
         Me.Label9.TabIndex = 33
-        Me.Label9.Text = "participantes en primera ronda"
+        Me.Label9.Text = "participantes en 1ª RONDA"
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'txt_numActual
         '
-        Me.txt_numActual.Location = New System.Drawing.Point(9, 279)
+        Me.txt_numActual.BackColor = System.Drawing.SystemColors.Info
+        Me.txt_numActual.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_numActual.ForeColor = System.Drawing.SystemColors.HotTrack
+        Me.txt_numActual.Location = New System.Drawing.Point(9, 273)
         Me.txt_numActual.Name = "txt_numActual"
         Me.txt_numActual.ReadOnly = True
         Me.txt_numActual.Size = New System.Drawing.Size(78, 20)
         Me.txt_numActual.TabIndex = 34
+        Me.txt_numActual.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'btn_recalcula
         '
@@ -242,7 +247,7 @@ Partial Class RollArt_SQLITE
         Me.btn_recalcula.Name = "btn_recalcula"
         Me.btn_recalcula.Size = New System.Drawing.Size(75, 50)
         Me.btn_recalcula.TabIndex = 35
-        Me.btn_recalcula.Text = "Recalcula"
+        Me.btn_recalcula.Text = "SORTEO"
         Me.btn_recalcula.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.btn_recalcula.UseVisualStyleBackColor = True
         '
@@ -251,7 +256,7 @@ Partial Class RollArt_SQLITE
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(762, 481)
+        Me.ClientSize = New System.Drawing.Size(842, 481)
         Me.Controls.Add(Me.btn_recalcula)
         Me.Controls.Add(Me.txt_numActual)
         Me.Controls.Add(Me.Label9)
