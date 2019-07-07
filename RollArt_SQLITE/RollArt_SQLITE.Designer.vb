@@ -59,11 +59,11 @@ Partial Class RollArt_SQLITE
         Me.DataGridViewTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewTable.ContextMenuStrip = Me.ContextMenuStripEditor
         Me.DataGridViewTable.Location = New System.Drawing.Point(106, 271)
-        Me.DataGridViewTable.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.DataGridViewTable.Margin = New System.Windows.Forms.Padding(2)
         Me.DataGridViewTable.Name = "DataGridViewTable"
         Me.DataGridViewTable.ReadOnly = True
         Me.DataGridViewTable.RowTemplate.Height = 31
-        Me.DataGridViewTable.Size = New System.Drawing.Size(733, 199)
+        Me.DataGridViewTable.Size = New System.Drawing.Size(878, 286)
         Me.DataGridViewTable.TabIndex = 20
         '
         'ContextMenuStripEditor
@@ -103,7 +103,7 @@ Partial Class RollArt_SQLITE
         Me.Panel1.Controls.Add(Me.treeEvents)
         Me.Panel1.Location = New System.Drawing.Point(106, 9)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(734, 257)
+        Me.Panel1.Size = New System.Drawing.Size(879, 257)
         Me.Panel1.TabIndex = 26
         '
         'Label7
@@ -129,7 +129,7 @@ Partial Class RollArt_SQLITE
         Me.treeEvents.Name = "treeEvents"
         Me.treeEvents.SelectedImageIndex = 1
         Me.treeEvents.ShowPlusMinus = False
-        Me.treeEvents.Size = New System.Drawing.Size(650, 250)
+        Me.treeEvents.Size = New System.Drawing.Size(795, 250)
         Me.treeEvents.TabIndex = 0
         '
         'ImageList1
@@ -161,7 +161,7 @@ Partial Class RollArt_SQLITE
         Me.ButtonSave.Image = Global.RollArt_SQLITE.My.Resources.Resources.guardar_32
         Me.ButtonSave.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.ButtonSave.Location = New System.Drawing.Point(10, 493)
-        Me.ButtonSave.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.ButtonSave.Margin = New System.Windows.Forms.Padding(2)
         Me.ButtonSave.Name = "ButtonSave"
         Me.ButtonSave.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.ButtonSave.Size = New System.Drawing.Size(76, 49)
@@ -256,7 +256,7 @@ Partial Class RollArt_SQLITE
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(842, 481)
+        Me.ClientSize = New System.Drawing.Size(987, 568)
         Me.Controls.Add(Me.btn_recalcula)
         Me.Controls.Add(Me.txt_numActual)
         Me.Controls.Add(Me.Label9)
@@ -268,7 +268,7 @@ Partial Class RollArt_SQLITE
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.DataGridViewTable)
         Me.Controls.Add(Me.ButtonSave)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "RollArt_SQLITE"
         Me.Text = "RollArt Base Editor"
         CType(Me.DataGridViewTable, System.ComponentModel.ISupportInitialize).EndInit()

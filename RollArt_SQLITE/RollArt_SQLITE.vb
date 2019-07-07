@@ -16,9 +16,6 @@ Public Class RollArt_SQLITE
     End Function
 
 
-
-
-
     Private Sub btn_OpenDB_Click_1(sender As Object, e As EventArgs) Handles btn_OpenDB.Click
         leer_Eventos()
     End Sub
@@ -27,6 +24,7 @@ Public Class RollArt_SQLITE
     Private Sub btn_ver_participantes_Click(sender As Object, e As EventArgs) Handles btn_ver_participantes.Click
         leer_posiciones_participantes()
     End Sub
+
 
     Private Sub treeEvents_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles treeEvents.AfterSelect
         leer_posiciones_participantes()
@@ -80,8 +78,10 @@ Public Class RollArt_SQLITE
             Next
             treeEvents.EndUpdate()
             treeEvents.ExpandAll()
+            'activar_botones()
         Catch ex As Exception
             MsgBox(ex.Message)
+            desactivar_botones()
         End Try
 
         TableDB.Dispose()
@@ -89,6 +89,7 @@ Public Class RollArt_SQLITE
         SQLiteCon.Close()
         SQLiteCon.Dispose()
         SQLiteCon = Nothing
+
     End Sub
 
 
@@ -116,13 +117,22 @@ Public Class RollArt_SQLITE
             'LoadDB("select NumStartingList as Sal, B.Name as nombre , A.ID_Atleta, Societa, Country, B.ID_Specialita, Position from Participants as A, Athletes as B, GaraFinal as G where A.ID_GaraParams = " & id_gara & " AND  A.ID_SEGMENT = G.ID_SEGMENT AND A.ID_GaraParams = G.ID_GaraParams AND A.ID_SEGMENT = 1 AND B.ID_Atleta = G.ID_Atleta AND A.ID_Atleta = B.ID_Atleta ORDER BY Position", TableDB, SQLiteCon)
             LoadDB("select NumStartingList as Sal, B.Name as NOMBRE , Societa as CLUB, Country as PAIS,  Position as Pos, A.ID_Atleta as ID from Participants as A, Athletes as B, GaraFinal as G where A.ID_GaraParams = " & id_gara & " AND  A.ID_SEGMENT = G.ID_SEGMENT AND A.ID_GaraParams = G.ID_GaraParams AND A.ID_SEGMENT = 1 AND B.ID_Atleta = G.ID_Atleta AND A.ID_Atleta = B.ID_Atleta ORDER BY Position", TableDB, SQLiteCon)
             'Contamos el numero de numero_participantes_en_sorteo y se muestra en el cuadro de texto y el selector de numeros
+
+            If TableDB.Rows.Count = 0 Then
+                DataGridViewTable.DataSource = Nothing
+                txt_numActual.Text = "0"
+                desactivar_botones()
+                Exit Sub
+            End If
             txt_numActual.Text = TableDB.Rows.Count
 
             If TableDB.Rows.Count < 38 Then
                 num_ParticipantesFinal.Maximum = TableDB.Rows.Count
+                num_ParticipantesFinal.Minimum = 1
                 num_ParticipantesFinal.Value = TableDB.Rows.Count
             Else
                 num_ParticipantesFinal.Maximum = 37
+                num_ParticipantesFinal.Minimum = 1
                 num_ParticipantesFinal.Value = 37
             End If
 
@@ -136,10 +146,12 @@ Public Class RollArt_SQLITE
             DataGridViewTable.Columns(2).Width = 190
             DataGridViewTable.Columns(3).Width = 50
             DataGridViewTable.Columns(4).Width = 30
+            DataGridViewTable.Columns(5).Width = 50
             DataGridViewTable.ClearSelection()
-
+            activar_botones()
         Catch ex As Exception
             MsgBox(ex.Message)
+            desactivar_botones()
             'Exit Sub
         End Try
 
@@ -168,6 +180,10 @@ Public Class RollArt_SQLITE
         Dim diferentes_posActual_Anteriores As Boolean
 
         If txt_numActual.Text <> num_ParticipantesFinal.Value Then borra_filas_en_tablas()
+
+        For x = 0 To num_ParticipantesFinal.Value - 1
+            DataGridViewTable.Rows(x).Cells(4).Value = 0
+        Next
 
         matriz_grupos_sorteo = New Integer(,) {{0, 0, 0, 0, 0, 0},
                                                 {1, 0, 0, 0, 0, 0},
@@ -224,7 +240,7 @@ Public Class RollArt_SQLITE
                     DataGridViewTable.Rows(2).Cells(4).Value = 1
             End Select
         Else
-            For loop_grupos_de_sorteo_posibles = 5 To 0 Step -1 'Rotacion por todos los grupos de la matriz
+            For loop_grupos_de_sorteo_posibles = 0 To 5 'Step -1 'Rotacion por todos los grupos de la matriz
                 'Depndiendo del grupo se le asigna un color 
                 Select Case loop_grupos_de_sorteo_posibles
                     Case 0
@@ -283,6 +299,7 @@ Public Class RollArt_SQLITE
 
             DataGridViewTable.Rows.Remove(DataGridViewTable.Rows(x - 1))
         Next
+
 
     End Sub
 
@@ -374,10 +391,15 @@ Public Class RollArt_SQLITE
 
     Private Sub RollArt_SQLITE_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Me.Width = 1500
+        desactivar_botones()
 
     End Sub
 
     Private Sub DataGridViewTable_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewTable.CellContentClick
+
+    End Sub
+
+    Private Sub num_ParticipantesFinal_ValueChanged(sender As Object, e As EventArgs) Handles num_ParticipantesFinal.ValueChanged
 
     End Sub
 
@@ -436,4 +458,18 @@ Public Class RollArt_SQLITE
         AllCellsSelected = (DataGridViewTable.SelectedCells.Count = (DataGridViewTable.RowCount * DataGridViewTable.Columns.GetColumnCount(DataGridViewElementStates.Visible)))
     End Function
 
+    Sub activar_botones()
+        ButtonSave.Enabled = True
+        btn_recalcula.Enabled = True
+        btn_ver_participantes.Enabled = True
+        num_ParticipantesFinal.Enabled = True
+    End Sub
+
+    Sub desactivar_botones()
+        ButtonSave.Enabled = False
+        btn_recalcula.Enabled = False
+        btn_ver_participantes.Enabled = False
+        num_ParticipantesFinal.Enabled = False
+
+    End Sub
 End Class
