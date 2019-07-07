@@ -284,7 +284,7 @@ Public Class RollArt_SQLITE
                 End If
             Next
         End If
-
+        ButtonSave.Enabled = True
     End Sub
 
     Sub borra_filas_en_tablas()
@@ -459,7 +459,7 @@ Public Class RollArt_SQLITE
     End Function
 
     Sub activar_botones()
-        ButtonSave.Enabled = True
+        ButtonSave.Enabled = False
         btn_recalcula.Enabled = True
         btn_ver_participantes.Enabled = True
         num_ParticipantesFinal.Enabled = True

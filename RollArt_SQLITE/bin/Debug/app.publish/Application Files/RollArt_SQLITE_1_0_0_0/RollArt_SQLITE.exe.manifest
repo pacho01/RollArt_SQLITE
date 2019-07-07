@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="RollArt_SQLITE.exe" version="1.0.0.0" publicKeyToken="cda6e8b884bba2fe" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="Resources\IconGroupRFEP.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="RollArt_SQLITE" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="RollArt_SQLITE.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet version="1" class="System.Security.NamedPermissionSet" Name="LocalIntranet" Description="Default rights given to applications on the local intranet" Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!-- UAC Manifest Options
+             If you want to change the Windows User Account Control level replace the 
+             requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+            Specifying requestedExecutionLevel element will disable file and registry virtualization. 
+            Remove this element if your application requires this virtualization for backwards
+            compatibility.
+        -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RollArt_SQLITE.exe" size="997824">
+      <assemblyIdentity name="RollArt_SQLITE" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>CPR5QxD/9L4gzjZmBOMV9ssDcHMA0vfxvHk6JRi2+lI=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="System.Data.SQLite.dll" size="352256">
+      <assemblyIdentity name="System.Data.SQLite" version="1.0.110.0" publicKeyToken="DB937BC2D44FF139" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>PZZn6QaLtVX1ubzLrBh1pusOngBlXeNpvkpkBSKT68s=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="Resources\IconGroupRFEP.ico" size="161882">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>5O6LjWxzea3zH5Tvh4spVNaVPKM8INbXCwGQ0f+0u9o=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="RollArt_SQLITE.exe.config" size="188">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>c922zfRb5ORzqEo8SDjt8Mx8lDMhGTWhqKcK/oileDM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
+    <application>
+      <!-- A list of the Windows versions that this application has been tested on and is
+           is designed to work with. Uncomment the appropriate elements and Windows will 
+           automatically selected the most compatible environment. -->
+      <!-- Windows Vista -->
+      <!--<supportedOS Id="{e2011457-1546-43c5-a5fe-008deee3d3f0}" />-->
+      <!-- Windows 7 -->
+      <!--<supportedOS Id="{35138b9a-5d96-4fbd-8e2d-a2440225f93a}" />-->
+      <!-- Windows 8 -->
+      <!--<supportedOS Id="{4a2f28e3-53b9-4441-ba9c-d69d4a4a6e38}" />-->
+      <!-- Windows 8.1 -->
+      <!--<supportedOS Id="{1f676c76-80e1-4239-95bb-83d0f6d0da78}" />-->
+      <!-- Windows 10 -->
+      <!--<supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}" />-->
+    </application>
+  </compatibility>
+<publisherIdentity name="CN=FORDEU1\jlloris" issuerKeyHash="e1653780110554989694929593f488ff278d0482" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>Q/vqtqxqhSBfUVNiCCKVGt9uy5zjPGH6Jvouu1wRwWw=</DigestValue></Reference></SignedInfo><SignatureValue>nrCGbKgS1Yd6YpinCvx5kUp3LXzNNVz94zoV7WJhCURUplUVvEHgR+IuhnWRxjRm6qfoB5phKSjUq+0ZakjFXHmwVTRAZwyHIDaCXVriQEam1nI3xzphIRri4SIJaG9nq+UzU5WIfPHCb9i21HzVOJMeQjYY0qayU/UXRBJasx8=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>vYZ4+cgvKHI644b4a2TfhUqFt4cdC3S992sLuBRUoOK5i6PVJjMgMOrsRqjQrRj7vIFUn+jRDjT6OeFN6Bsru6RCA1kfOgkXQGHFcPEPDf6e9J7EKvbWGIwSgYyBoRB1XIdfmv6ZAjb8EzaoqSWI/fAc01f3ZZr2xxWMn6pUAgU=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="6cc1115cbb2efa26fa613ce39ccb6edf1a9522086253515f20856aacb6eafb43" Description="" Url=""><as:assemblyIdentity name="RollArt_SQLITE.exe" version="1.0.0.0" publicKeyToken="cda6e8b884bba2fe" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=FORDEU1\jlloris</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>Hu9bu6AYR2qT7thGpFY6LRZl0WapxjRNvKBaCB1drwY=</DigestValue></Reference></SignedInfo><SignatureValue>deYi9hwI+Pk3q8Tuqbj6fOlUvmcWq1+GBxzDykbwfCBsIDUKjJa9EbR0FiQB44W5GSUjR/7Gda84hBR7EoZp2O+Gyk1tbt2MKi4fcrBDvnj66YSlzi90ZdFXxwFrrpu60kSKs/BWbt1W98f46H2l9ng7aqO+6/3+XD7vmqI0lXk=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>vYZ4+cgvKHI644b4a2TfhUqFt4cdC3S992sLuBRUoOK5i6PVJjMgMOrsRqjQrRj7vIFUn+jRDjT6OeFN6Bsru6RCA1kfOgkXQGHFcPEPDf6e9J7EKvbWGIwSgYyBoRB1XIdfmv6ZAjb8EzaoqSWI/fAc01f3ZZr2xxWMn6pUAgU=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB1TCCAT6gAwIBAgIQe5GEjVujcYhJqewIkOIQnjANBgkqhkiG9w0BAQsFADApMScwJQYDVQQDHh4ARgBPAFIARABFAFUAMQBcAGoAbABsAG8AcgBpAHMwHhcNMTkwNzA3MjM0NDI0WhcNMjAwNzA3MDU0NDI0WjApMScwJQYDVQQDHh4ARgBPAFIARABFAFUAMQBcAGoAbABsAG8AcgBpAHMwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAL2GePnILyhyOuOG+Gtk34VKhbeHHQt0vfdrC7gUVKDiuYuj1SYzIDDq7Eao0K0Y+7yBVJ/o0Q40+jnhTegbK7ukQgNZHzoJF0BhxXDxDw3+nvSexCr21hiMEoGMgaEQdVyHX5r+mQI2/BM2qKkliP3wHNNX92Wa9scVjJ+qVAIFAgMBAAEwDQYJKoZIhvcNAQELBQADgYEAojEMLIuinSoEVAVpDXt7cSFXgzehgexoAGp/esjHZEfOhM/8s6dmFLrUC73tmVdoMgqUDob6S4kLQicLhsr6C1qgRfRT83FBBCAr3jH5YY94V5jkeqQIuQpR5XLPrSV91QkExUWsz8FEzl4qssyVudH/6egR4imqyKhcxRiu+Nw=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

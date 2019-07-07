@@ -268,6 +268,7 @@ Partial Class RollArt_SQLITE
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.DataGridViewTable)
         Me.Controls.Add(Me.ButtonSave)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "RollArt_SQLITE"
         Me.Text = "RollArt Base Editor"
