@@ -10,3 +10,8 @@ C:\Users\jlloris\Documents\Visual Studio 2015\Projects\RollArt_SQLite\RollArt_SQ
 C:\Users\jlloris\Documents\Visual Studio 2015\Projects\RollArt_SQLite\RollArt_SQLITE\RollArt_SQLITE\obj\Release\RollArt_SQLITE.exe
 C:\Users\jlloris\Documents\Visual Studio 2015\Projects\RollArt_SQLite\RollArt_SQLITE\RollArt_SQLITE\obj\Release\RollArt_SQLITE.xml
 C:\Users\jlloris\Documents\Visual Studio 2015\Projects\RollArt_SQLite\RollArt_SQLITE\RollArt_SQLITE\obj\Release\RollArt_SQLITE.pdb
+C:\Users\jlloris\Documents\Visual Studio 2015\Projects\RollArt_SQLite\RollArt_SQLITE\RollArt_SQLITE\bin\Release\RollArt_SQLITE.exe.manifest
+C:\Users\jlloris\Documents\Visual Studio 2015\Projects\RollArt_SQLite\RollArt_SQLITE\RollArt_SQLITE\bin\Release\RollArt_SQLITE.application
+C:\Users\jlloris\Documents\Visual Studio 2015\Projects\RollArt_SQLite\RollArt_SQLITE\RollArt_SQLITE\obj\Release\RollArt_SQLITE.TrustInfo.xml
+C:\Users\jlloris\Documents\Visual Studio 2015\Projects\RollArt_SQLite\RollArt_SQLITE\RollArt_SQLITE\obj\Release\RollArt_SQLITE.exe.manifest
+C:\Users\jlloris\Documents\Visual Studio 2015\Projects\RollArt_SQLite\RollArt_SQLITE\RollArt_SQLITE\obj\Release\RollArt_SQLITE.application

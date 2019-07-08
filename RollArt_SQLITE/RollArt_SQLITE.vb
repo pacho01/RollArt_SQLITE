@@ -1,13 +1,11 @@
 ﻿Imports System.Data.SQLite
 Imports System.Runtime.InteropServices
 
-
 Public Class RollArt_SQLITE
     Dim DB_Path As String
     Dim id_gara As Integer
     Dim TableName As String = "Athletes"
     '*************************************************************************
-
     Dim IDRam, NameRam, CityRam, Mobile_PhoneRam, EmailRam, GenderRam As String
 
     'code to make "hint text" in the textbox search
@@ -15,21 +13,17 @@ Public Class RollArt_SQLITE
     Private Shared Function SendMessage(ByVal hWnd As IntPtr, ByVal msg As Integer, ByVal wParam As Integer, <MarshalAs(UnmanagedType.LPWStr)> ByVal lParam As String) As Int32
     End Function
 
-
     Private Sub btn_OpenDB_Click_1(sender As Object, e As EventArgs) Handles btn_OpenDB.Click
         leer_Eventos()
     End Sub
-
 
     Private Sub btn_ver_participantes_Click(sender As Object, e As EventArgs) Handles btn_ver_participantes.Click
         leer_posiciones_participantes()
     End Sub
 
-
     Private Sub treeEvents_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles treeEvents.AfterSelect
         leer_posiciones_participantes()
     End Sub
-
 
     Sub leer_Eventos()
 
@@ -43,7 +37,6 @@ Public Class RollArt_SQLITE
             MsgBox("No se cargo ningun Archivo", vbOKOnly)
             Exit Sub
         End If
-
 
         Dim SQLiteCon As New SQLiteConnection(DB_Path)
         Try
@@ -92,11 +85,10 @@ Public Class RollArt_SQLITE
 
     End Sub
 
-
+    'Sub lee la lista de participantes y ordena segun la posicion en la que an quedado el la primera ronda
     Sub leer_posiciones_participantes()
 
         Dim SQLiteCon As New SQLiteConnection(DB_Path)
-
 
         Try
             SQLiteCon.Open()
@@ -136,8 +128,6 @@ Public Class RollArt_SQLITE
                 num_ParticipantesFinal.Value = 37
             End If
 
-
-
             'Cargamos TableDB en el gridview y asignamos el ancho de las celdas
             DataGridViewTable.DataSource = Nothing
             DataGridViewTable.DataSource = TableDB
@@ -155,17 +145,15 @@ Public Class RollArt_SQLITE
             'Exit Sub
         End Try
 
-
-
         TableDB.Dispose()
         TableDB = Nothing
         SQLiteCon.Close()
         SQLiteCon.Dispose()
         SQLiteCon = Nothing
 
-
     End Sub
 
+    'Sub para recalculo de las posiciones de salida
     Private Sub btn_recalcula_Click(sender As Object, e As EventArgs) Handles btn_recalcula.Click
 
         Dim numero_participantes_en_sorteo As Integer = num_ParticipantesFinal.Value
@@ -184,7 +172,7 @@ Public Class RollArt_SQLITE
         For x = 0 To num_ParticipantesFinal.Value - 1
             DataGridViewTable.Rows(x).Cells(4).Value = 0
         Next
-
+        'matriz de divisiones de grupos por numero de participantes
         matriz_grupos_sorteo = New Integer(,) {{0, 0, 0, 0, 0, 0},
                                                 {1, 0, 0, 0, 0, 0},
                                                 {2, 0, 0, 0, 0, 0},
@@ -223,8 +211,6 @@ Public Class RollArt_SQLITE
                                                 {7, 7, 7, 7, 7, 0},
                                                 {6, 6, 6, 6, 6, 6},
                                                 {7, 6, 6, 6, 6, 6}}
-
-
 
         posiciones_acumuladas_de_grupos_ya_sorteados = 0
         If numero_participantes_en_sorteo < 4 Then
@@ -278,7 +264,6 @@ Public Class RollArt_SQLITE
                             DataGridViewTable.Rows(numero_participantes_en_sorteo - (posiciones_acumuladas_de_grupos_ya_sorteados + filas_en_tabla)).Cells(celdas_en_fila).Style.BackColor = color_de_fondo
                         Next
 
-
                     Next
                     posiciones_acumuladas_de_grupos_ya_sorteados += matriz_grupos_sorteo(numero_participantes_en_sorteo, loop_grupos_de_sorteo_posibles) 'Se suma el valor de numero_participantes_en_sorteo del grupo recien terminado al posiciones_acumuladas_de_grupos_ya_sorteados de participantes
                 End If
@@ -291,7 +276,6 @@ Public Class RollArt_SQLITE
         Dim filas_en_tablaInicio As Integer
         Dim filas_en_tablaFin As Integer
 
-        'filas_en_tablaInicio = txt_numActual.Text
         filas_en_tablaInicio = DataGridViewTable.Rows.Count - 1
         filas_en_tablaFin = num_ParticipantesFinal.Value + 1
         num_ParticipantesFinal.Maximum = num_ParticipantesFinal.Value
@@ -300,59 +284,12 @@ Public Class RollArt_SQLITE
             DataGridViewTable.Rows.Remove(DataGridViewTable.Rows(x - 1))
         Next
 
-
     End Sub
 
 
     Private Sub ButtonSave_Click(sender As Object, e As EventArgs) Handles ButtonSave.Click
-        'If TextBoxID.Text = "" And TextBoxName.Text = "" And TextBoxCity.Text = "" And TextBoxMobilePhone.Text = "" And TextBoxEmail.Text = "" And ComboBoxGender.Text = "- choose gender -" Then
-        '    MessageBox.Show("All data has not been filled, please fill in", "Failed")
-        '    Return
-        'End If
-
-        'If TextBoxID.Text = "" Then
-        '    MessageBox.Show("ID has not been filled, please fill in ID", "Failed")
-        '    Return
-        'End If
-
-        'If TextBoxName.Text = "" Then
-        '    MessageBox.Show("Name has not been filled, please fill in Name", "Failed")
-        '    Return
-        'End If
-
-        'If TextBoxCity.Text = "" Then
-        '    MessageBox.Show("City has not been filled, please fill in City", "Failed")
-        '    Return
-        'End If
-
-        'If TextBoxMobilePhone.Text = "" Then
-        '    MessageBox.Show("Mobile Phone has not been filled, please fill in Mobile Phone", "Failed")
-        '    Return
-        'End If
-
-        'If TextBoxEmail.Text = "" Then
-        '    MessageBox.Show("Email has not been filled, please fill in Email", "Failed")
-        '    Return
-        'End If
-
-        'If ComboBoxGender.Text = "- choose gender -" Then
-        '    MessageBox.Show("Gender not selected, please select Gender", "Failed")
-        '    Return
-        'End If
-
-
-
-
-
-        '*******************************************************************************
-        'Exit Sub
-        '*******************************************************************************
-
-
-
 
         Dim SQLiteCon As New SQLiteConnection(DB_Path)
-
         Try
             SQLiteCon.Open()
         Catch ex As Exception
@@ -367,7 +304,6 @@ Public Class RollArt_SQLITE
             'EjecutaSQL_SinRetorno("insert into " & TableName & " (ID,Name,Mobile_Phone,Email,City,Gender) values ('" & TextBoxID.Text & "','" & TextBoxName.Text _
             '                & "','" & TextBoxMobilePhone.Text & "','" & TextBoxEmail.Text & "','" & TextBoxCity.Text & "','" & ComboBoxGender.Text & "')", SQLiteCon)
             EjecutaSQL_SinRetorno("DELETE FROM Participants WHERE ID_GaraParams = " & id_gara & " AND ID_Segment = 2", SQLiteCon)
-
 
             For x_loop = 0 To DataGridViewTable.Rows.Count - 2
                 sql_comando = "INSERT INTO Participants VALUES (" & id_gara & ", 2," & DataGridViewTable.Rows(x_loop).Cells(5).Value & "," & DataGridViewTable.Rows(x_loop).Cells(4).Value & ")"
@@ -385,28 +321,13 @@ Public Class RollArt_SQLITE
         SQLiteCon.Dispose()
         SQLiteCon = Nothing
 
-        'ButtonRefresh_Click(sender, e)
-        'ButtonClear_Click(sender, e)
     End Sub
 
     Private Sub RollArt_SQLITE_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'Me.Width = 1500
+
         desactivar_botones()
-
+        Me.Text = "RollArt Sorteos - V:" & My.Application.Info.Version.ToString
     End Sub
-
-    Private Sub DataGridViewTable_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewTable.CellContentClick
-
-    End Sub
-
-    Private Sub num_ParticipantesFinal_ValueChanged(sender As Object, e As EventArgs) Handles num_ParticipantesFinal.ValueChanged
-
-    End Sub
-
-    Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
-        'ButtonDelete_Click(sender, e)
-    End Sub
-
 
     Private Sub DataGridViewTable_CellMouseDown(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridViewTable.CellMouseDown
         If AllCellsSelected(DataGridViewTable) = False Then
@@ -416,13 +337,7 @@ Public Class RollArt_SQLITE
                 With DataGridViewTable
                     If e.RowIndex >= 0 Then
                         i = .CurrentRow.Index
-
-                        'IDRam = .Rows(i).Cells("ID").Value.ToString
-                        'NameRam = .Rows(i).Cells("Name").Value.ToString
-                        'CityRam = .Rows(i).Cells("City").Value.ToString
-                        'Mobile_PhoneRam = .Rows(i).Cells("Mobile_Phone").Value.ToString
-                        'EmailRam = .Rows(i).Cells("Email").Value.ToString
-                        'GenderRam = .Rows(i).Cells("Gender").Value.ToString
+                        GenderRam = .Rows(i).Cells("Gender").Value.ToString
 
                         IDRam = .Rows(i).Cells("ID_Atleta").Value.ToString
                         NameRam = .Rows(i).Cells("Name").Value.ToString
