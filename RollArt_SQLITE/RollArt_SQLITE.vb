@@ -305,10 +305,24 @@ Public Class RollArt_SQLITE
             '                & "','" & TextBoxMobilePhone.Text & "','" & TextBoxEmail.Text & "','" & TextBoxCity.Text & "','" & ComboBoxGender.Text & "')", SQLiteCon)
             EjecutaSQL_SinRetorno("DELETE FROM Participants WHERE ID_GaraParams = " & id_gara & " AND ID_Segment = 2", SQLiteCon)
 
-            For x_loop = 0 To DataGridViewTable.Rows.Count - 2
-                sql_comando = "INSERT INTO Participants VALUES (" & id_gara & ", 2," & DataGridViewTable.Rows(x_loop).Cells(5).Value & "," & DataGridViewTable.Rows(x_loop).Cells(4).Value & ")"
-                EjecutaSQL_SinRetorno(sql_comando, SQLiteCon)
+
+            'Moddificado para que guarde los participantes por orden de salida
+
+            'For x_loop = 0 To DataGridViewTable.Rows.Count - 2
+            '    sql_comando = "INSERT INTO Participants VALUES (" & id_gara & ", 2," & DataGridViewTable.Rows(x_loop).Cells(5).Value & "," & DataGridViewTable.Rows(x_loop).Cells(4).Value & ")"
+            '    EjecutaSQL_SinRetorno(sql_comando, SQLiteCon)
+            'Next
+
+
+            For loop_orden_salida = 1 To DataGridViewTable.RowCount - 1
+                For loop_celdas = 0 To DataGridViewTable.RowCount - 2
+                    If DataGridViewTable.Rows(loop_celdas).Cells(4).Value = loop_orden_salida Then
+                        sql_comando = "INSERT INTO Participants VALUES (" & id_gara & ", 2," & DataGridViewTable.Rows(loop_celdas).Cells(5).Value & "," & DataGridViewTable.Rows(loop_celdas).Cells(4).Value & ")"
+                        EjecutaSQL_SinRetorno(sql_comando, SQLiteCon)
+                    End If
+                Next
             Next
+
             sql_comando = "UPDATE GaraParams SET Partecipants= " & DataGridViewTable.Rows.Count - 1 & " WHERE ID_Segment = 2 AND ID_GaraParams = " & id_gara
             EjecutaSQL_SinRetorno(sql_comando, SQLiteCon)
 
