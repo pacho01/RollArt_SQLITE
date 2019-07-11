@@ -5,7 +5,7 @@ Public Class RollArt_SQLITE
     Dim DB_Path As String
     Dim id_gara As Integer
     Dim TableName As String = "Athletes"
-    '*************************************************************************
+    '*************************************************************************++
     Dim IDRam, NameRam, CityRam, Mobile_PhoneRam, EmailRam, GenderRam As String
 
     'code to make "hint text" in the textbox search
