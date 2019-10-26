@@ -5,6 +5,6 @@
     End Sub
 
     Private Sub Form_Corrector_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.Cursor = DefaultCursor
+        Me.Cursor = System.Windows.Forms.Cursors.Arrow
     End Sub
 End Class

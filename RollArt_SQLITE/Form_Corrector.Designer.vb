@@ -34,6 +34,7 @@ Partial Class Form_Corrector
         Me.Btn_CERRAR.TabIndex = 0
         Me.Btn_CERRAR.Text = "CERRAR"
         Me.Btn_CERRAR.UseVisualStyleBackColor = True
+        Me.Btn_CERRAR.UseWaitCursor = True
         '
         'Form_Corrector
         '
@@ -41,6 +42,7 @@ Partial Class Form_Corrector
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1305, 615)
         Me.Controls.Add(Me.Btn_CERRAR)
+        Me.Cursor = System.Windows.Forms.Cursors.Arrow
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form_Corrector"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
