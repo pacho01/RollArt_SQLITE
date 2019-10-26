@@ -41,7 +41,6 @@ Partial Class Form_Corrector
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1305, 615)
         Me.Controls.Add(Me.Btn_CERRAR)
-        Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form_Corrector"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
