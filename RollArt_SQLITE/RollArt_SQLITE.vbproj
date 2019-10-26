@@ -116,6 +116,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form_Corrector.Designer.vb">
+      <DependentUpon>Form_Corrector.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Corrector.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="RollArt_SQLITE.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -140,6 +146,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Form_Corrector.resx">
+      <DependentUpon>Form_Corrector.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RollArt_SQLITE.resx">
       <DependentUpon>RollArt_SQLITE.vb</DependentUpon>
     </EmbeddedResource>
