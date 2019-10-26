@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RollArt_SQLITE.exe" size="997824">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RollArt_SQLITE.exe" size="1068992">
       <assemblyIdentity name="RollArt_SQLITE" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ezzlDHfGf0sAtpbg00XgHSJsjAzaexVrIgBQRQFkN8M=</dsig:DigestValue>
+        <dsig:DigestValue>U5cQBQ29rbHi32wpsrRiXo3Wb4kWuM3gIfZlPPkN16w=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

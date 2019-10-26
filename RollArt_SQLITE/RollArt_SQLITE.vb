@@ -366,6 +366,13 @@ Public Class RollArt_SQLITE
         End If
     End Sub
 
+    Private Sub Btn_Show_Corrector_Click(sender As Object, e As EventArgs) Handles Btn_Show_Corrector.Click
+
+        Form_Corrector.Visible = True
+        Me.Visible = False
+
+    End Sub
+
 
     'Sub to read the database
     Private Sub LoadDB(ByVal q As String, ByVal tbl As DataTable, ByVal cn As SQLiteConnection)

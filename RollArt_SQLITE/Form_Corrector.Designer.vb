@@ -23,18 +23,33 @@ Partial Class Form_Corrector
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form_Corrector))
+        Me.Btn_CERRAR = New System.Windows.Forms.Button()
         Me.SuspendLayout()
+        '
+        'Btn_CERRAR
+        '
+        Me.Btn_CERRAR.Location = New System.Drawing.Point(29, 37)
+        Me.Btn_CERRAR.Name = "Btn_CERRAR"
+        Me.Btn_CERRAR.Size = New System.Drawing.Size(75, 23)
+        Me.Btn_CERRAR.TabIndex = 0
+        Me.Btn_CERRAR.Text = "CERRAR"
+        Me.Btn_CERRAR.UseVisualStyleBackColor = True
         '
         'Form_Corrector
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1305, 615)
+        Me.Controls.Add(Me.Btn_CERRAR)
+        Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form_Corrector"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Corrector"
         Me.UseWaitCursor = True
         Me.ResumeLayout(False)
 
     End Sub
+
+    Friend WithEvents Btn_CERRAR As Button
 End Class

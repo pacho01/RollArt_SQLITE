@@ -115,7 +115,6 @@ C:\Users\pacho\Source\Repos\RollArt_SQLITE\RollArt_SQLITE\obj\Debug\RollArt_SQLI
 C:\Users\pacho\Source\Repos\RollArt_SQLITE\RollArt_SQLITE\obj\Debug\RollArt_SQLITE.RollArt_SQLITE.resources
 C:\Users\pacho\Source\Repos\RollArt_SQLITE\RollArt_SQLITE\obj\Debug\RollArt_SQLITE.Resources.resources
 C:\Users\pacho\Source\Repos\RollArt_SQLITE\RollArt_SQLITE\obj\Debug\RollArt_SQLITE.vbproj.GenerateResource.cache
-C:\Users\pacho\Source\Repos\RollArt_SQLITE\RollArt_SQLITE\obj\Debug\RollArt_SQLITE.vbproj.CoreCompileInputs.cache
 C:\Users\pacho\Source\Repos\RollArt_SQLITE\RollArt_SQLITE\obj\Debug\RollArt_SQLITE.exe
 C:\Users\pacho\Source\Repos\RollArt_SQLITE\RollArt_SQLITE\obj\Debug\RollArt_SQLITE.xml
 C:\Users\pacho\Source\Repos\RollArt_SQLITE\RollArt_SQLITE\obj\Debug\RollArt_SQLITE.pdb
@@ -132,3 +131,4 @@ C:\Users\pacho\Source\Repos\RollArt_SQLITE\RollArt_SQLITE\obj\Debug\RollArt_SQLI
 C:\Users\pacho\Source\Repos\RollArt_SQLITE\RollArt_SQLITE\obj\Debug\RollArt_SQLITE.exe.manifest
 C:\Users\pacho\Source\Repos\RollArt_SQLITE\RollArt_SQLITE\obj\Debug\RollArt_SQLITE.application
 C:\Users\pacho\Source\Repos\RollArt_SQLITE\RollArt_SQLITE\obj\Debug\RollArt_SQLITE.vbproj.CopyComplete
+C:\Users\pacho\source\repos\RollArt_SQLITE\RollArt_SQLITE\obj\Debug\RollArt_SQLITE.Form_Corrector.resources

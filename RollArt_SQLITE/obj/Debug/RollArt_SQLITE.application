@@ -7,14 +7,14 @@
     <framework targetVersion="4.6" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="RollArt_SQLITE.exe.manifest" size="5812">
+    <dependentAssembly dependencyType="install" codebase="RollArt_SQLITE.exe.manifest" size="5813">
       <assemblyIdentity name="RollArt_SQLITE.exe" version="1.0.0.3" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>oWrUXK5UlyckHu3Y7+uFMN77xDp3DhNxaYAaG1v5518=</dsig:DigestValue>
+        <dsig:DigestValue>4BTU59jR0SLOw/jMAcTkjJOU/l0Wf+hB6CEBN6fQNlM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

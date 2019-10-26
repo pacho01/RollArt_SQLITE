@@ -221,7 +221,7 @@ Partial Class RollArt_SQLITE
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(165, 45)
         Me.Label8.TabIndex = 32
-        Me.Label8.Text = "Numero particiantes para 2ª RONDA"
+        Me.Label8.Text = "Número particiantes para 2ª RONDA"
         Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label9
@@ -231,7 +231,7 @@ Partial Class RollArt_SQLITE
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(159, 57)
         Me.Label9.TabIndex = 33
-        Me.Label9.Text = "participantes en 1ª RONDA"
+        Me.Label9.Text = "Participantes en 1ª RONDA"
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'txt_numActual
@@ -328,6 +328,7 @@ Partial Class RollArt_SQLITE
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "RollArt_SQLITE"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "RollArt Base Editor"
         CType(Me.DataGridViewTable, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStripEditor.ResumeLayout(False)
