@@ -29,35 +29,36 @@ Partial Class Form_Corrector
         '
         'Btn_CERRAR
         '
-        Me.Btn_CERRAR.Location = New System.Drawing.Point(29, 37)
+        Me.Btn_CERRAR.Location = New System.Drawing.Point(53, 68)
+        Me.Btn_CERRAR.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.Btn_CERRAR.Name = "Btn_CERRAR"
-        Me.Btn_CERRAR.Size = New System.Drawing.Size(75, 23)
+        Me.Btn_CERRAR.Size = New System.Drawing.Size(138, 42)
         Me.Btn_CERRAR.TabIndex = 0
         Me.Btn_CERRAR.Text = "CERRAR"
         Me.Btn_CERRAR.UseVisualStyleBackColor = True
-        Me.Btn_CERRAR.UseWaitCursor = True
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(143, 46)
+        Me.Button1.Location = New System.Drawing.Point(262, 85)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.Size = New System.Drawing.Size(138, 42)
         Me.Button1.TabIndex = 1
         Me.Button1.Text = "Button1"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'Form_Corrector
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1305, 615)
+        Me.ClientSize = New System.Drawing.Size(2164, 1135)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Btn_CERRAR)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.Name = "Form_Corrector"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Corrector"
-        Me.UseWaitCursor = True
         Me.ResumeLayout(False)
 
     End Sub

@@ -132,3 +132,4 @@ C:\Users\pacho\Source\Repos\RollArt_SQLITE\RollArt_SQLITE\obj\Debug\RollArt_SQLI
 C:\Users\pacho\Source\Repos\RollArt_SQLITE\RollArt_SQLITE\obj\Debug\RollArt_SQLITE.application
 C:\Users\pacho\Source\Repos\RollArt_SQLITE\RollArt_SQLITE\obj\Debug\RollArt_SQLITE.vbproj.CopyComplete
 C:\Users\pacho\source\repos\RollArt_SQLITE\RollArt_SQLITE\obj\Debug\RollArt_SQLITE.Form_Corrector.resources
+C:\Users\pacho\Source\Repos\GitHub\RollArt_SQLITE\obj\Debug\RollArt_SQLITE.Form_Corrector.resources
