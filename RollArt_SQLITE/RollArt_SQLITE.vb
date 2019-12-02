@@ -367,7 +367,8 @@ Public Class RollArt_SQLITE
     End Sub
 
     Private Sub Btn_Show_Corrector_Click(sender As Object, e As EventArgs) Handles Btn_Show_Corrector.Click
-
+        Form_Corrector.caminoDB = DB_Path
+        Form_Corrector.competicion = id_gara
         Form_Corrector.Visible = True
         Me.Visible = False
 
@@ -400,6 +401,7 @@ Public Class RollArt_SQLITE
         btn_recalcula.Enabled = True
         btn_ver_participantes.Enabled = True
         num_ParticipantesFinal.Enabled = True
+        Btn_Show_Corrector.Enabled = True
     End Sub
 
     Sub desactivar_botones()
@@ -407,6 +409,7 @@ Public Class RollArt_SQLITE
         btn_recalcula.Enabled = False
         btn_ver_participantes.Enabled = False
         num_ParticipantesFinal.Enabled = False
+        Btn_Show_Corrector.Enabled = False
 
     End Sub
 End Class
